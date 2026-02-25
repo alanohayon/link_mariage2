@@ -1,7 +1,9 @@
 .main-title {
-  color: #f5f5dc;
-  text-align: center;
-  margin: 20px 0 30px 0;
-  font-weight: 400;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: #f5f5dc;
+    text-align: center;
+    /* descend de ~25% avec limites min/max */
+    margin-top: clamp(5rem, 5vh, 12rem);
+    margin-bottom: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }

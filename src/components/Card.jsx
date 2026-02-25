@@ -1,27 +1,42 @@
-import React from 'react'
-import './Card.css'
-import HebrewTitle from './HebrewTitle'
-import MainTitle from './MainTitle'
-import FamilyNames from './FamilyNames'
-import AnnouncementText from './AnnouncementText'
-import CoupleNames from './CoupleNames'
-import ClosingText from './ClosingText'
-import fondCarte from '../../assets/Fond_carte.png'
+import React from "react";
+import "./Card.css";
+import HebrewTitle from "./HebrewTitle";
+import FamilyNames from "./FamilyNames";
+import AnnouncementText from "./AnnouncementText";
+import CoupleNames from "./CoupleNames";
+import ClosingText from "./ClosingText";
+import EventDate from "./EventDate";
+import EventLocation from "./EventLocation";
+import MemoryPhrase from "./MemoryPhrase";
+import Programme from "./Programme";
+import LocationMap from "./LocationMap";
+import RSVPForm from "./RSVPForm";
+import fondCarte from "../../assets/Fond_carte.png";
 
 const Card = () => {
   return (
-    <div
-      className="card"
-      style={{ backgroundImage: `url(${fondCarte})` }}
-    >
-      <HebrewTitle />
-      <MainTitle />
-      <FamilyNames />
-      <AnnouncementText />
-      <CoupleNames />
-      <ClosingText />
-    </div>
-  )
-}
+    <>
+      {/* Fond fixe qui couvre tout l'écran (fix iOS) */}
+      <div
+        className="card-background"
+        style={{ backgroundImage: `url(${fondCarte})` }}
+      />
+      {/* Contenu scrollable */}
+      <div className="card">
+        <HebrewTitle />
+        <FamilyNames />
+        <AnnouncementText />
+        <CoupleNames />
+        <ClosingText />
+        <EventDate />
+        <EventLocation />
+        <MemoryPhrase />
+        <Programme />
+        <LocationMap />
+        <RSVPForm />
+      </div>
+    </>
+  );
+};
 
-export default Card
+export default Card;

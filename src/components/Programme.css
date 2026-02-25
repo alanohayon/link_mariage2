@@ -1,0 +1,44 @@
+.programme {
+    text-align: center;
+    color: #f5f5dc;
+    margin-top: clamp(2rem, 5vh, 3rem);
+    margin-bottom: clamp(2rem, 5vh, 3rem);
+    padding-left: clamp(1rem, 5vw, 2rem);
+    padding-right: clamp(1rem, 5vw, 2rem);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.programme-title {
+    font-size: clamp(1.6rem, 4.5vw, 2rem);
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: clamp(1rem, 3vh, 1.5rem);
+    letter-spacing: 0.05em;
+}
+
+.programme-items {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.8rem, 2vh, 1.2rem);
+}
+
+.programme-item {
+    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.programme-item .time {
+    font-weight: 600;
+}
+
+.programme-item .event {
+    font-style: italic;
+}
+
+.programme-item .note {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    opacity: 0.85;
+}

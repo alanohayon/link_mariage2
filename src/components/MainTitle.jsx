@@ -3,7 +3,7 @@ import './MainTitle.css'
 
 const MainTitle = ({
   text = "Houppa & Soirée",
-  fontSize = "3.5rem",
+  fontSize = "clamp(3.25rem, 10.5vw, 4.5rem)",
   fontFamily = "'Great Vibes', cursive"
 }) => {
   return (

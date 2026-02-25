@@ -1,0 +1,17 @@
+.memory-phrase {
+    text-align: center;
+    color: #f5f5dc;
+    margin-top: clamp(2rem, 5vh, 3rem);
+    margin-bottom: clamp(2rem, 5vh, 3rem);
+    padding-left: clamp(1.5rem, 6vw, 2.5rem);
+    padding-right: clamp(1.5rem, 6vw, 2.5rem);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.memory-phrase p {
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+}

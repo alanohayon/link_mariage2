@@ -1,0 +1,51 @@
+.location-map {
+    text-align: center;
+    color: #f5f5dc;
+    margin-top: clamp(2rem, 5vh, 3rem);
+    margin-bottom: clamp(2rem, 5vh, 3rem);
+    padding-left: clamp(1rem, 5vw, 2rem);
+    padding-right: clamp(1rem, 5vw, 2rem);
+}
+
+.map-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: clamp(1rem, 3vh, 1.5rem);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.map-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.map-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+    border-radius: 2rem;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.map-button:active {
+    transform: scale(0.98);
+}
+
+.map-button.waze {
+    background: #33ccff;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(51, 204, 255, 0.4);
+}
+
+.waze-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}

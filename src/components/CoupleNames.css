@@ -1,23 +1,26 @@
 .couple-names {
-  text-align: center;
-  color: #f5f5dc;
-  margin: 20px 0;
+    text-align: center;
+    color: #f5f5dc;
+    margin-top: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: clamp(1.5rem, 4vw, 2rem);
 }
 
 .names-main {
-  font-weight: 400;
-  margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hebrew-names {
-  display: flex;
-  justify-content: space-around;
-  padding: 0 60px;
-  margin-top: 10px;
-  direction: rtl;
+    display: flex;
+    justify-content: space-around;
+    padding-left: clamp(2rem, 10vw, 3.75rem);
+    padding-right: clamp(2rem, 10vw, 3.75rem);
+    margin-top: clamp(0.5rem, 2vw, 0.625rem);
+    /* LTR pour que l'ordre suive Hannah (שמחה) à gauche, Alan (יצחק) à droite */
+    direction: ltr;
 }
 
 .hebrew-name {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
