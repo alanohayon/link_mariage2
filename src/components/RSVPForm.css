@@ -1,12 +1,13 @@
 .rsvp-form {
-    margin-top: clamp(3rem, 8vh, 5rem);
-    margin-bottom: clamp(3rem, 8vh, 5rem);
-    padding: clamp(1.5rem, 5vw, 2.5rem);
-    background: rgba(255, 255, 255, 0.1);
+    margin-top: clamp(1.5rem, 4vh, 3rem);
+    margin-bottom: clamp(2rem, 5vh, 3rem);
+    padding: clamp(1.2rem, 4vw, 2rem);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
     border-radius: 1rem;
-    margin-left: clamp(1rem, 4vw, 2rem);
-    margin-right: clamp(1rem, 4vw, 2rem);
+    margin-left: clamp(0.8rem, 3vw, 1.5rem);
+    margin-right: clamp(0.8rem, 3vw, 1.5rem);
+    width: calc(100% - clamp(1.6rem, 6vw, 3rem));
 }
 
 .rsvp-title {
@@ -101,8 +102,21 @@
     box-shadow: 0 4px 15px rgba(245, 245, 220, 0.3);
 }
 
-.submit-button:active {
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.submit-button:active:not(:disabled) {
     transform: scale(0.98);
+}
+
+.rsvp-error {
+    color: #ff6b6b;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    text-align: center;
+    margin: 0.5rem 0;
 }
 
 .rsvp-success {

@@ -10,8 +10,11 @@ const RSVPForm = () => {
     email: "",
     message: "",
   });
+  const [honeypot, setHoneypot] = useState("");
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,9 +23,38 @@ const RSVPForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Envoyer les données à un backend (Supabase, etc.)
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
+    if (honeypot) return;
+    setLoading(true);
+    setError("");
+
+    try {
+      const webhookUrl = import.meta.env.VITE_WEBHOOK_URL;
+      if (!webhookUrl) {
+        throw new Error("Webhook URL non configuree");
+      }
+
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          adults: Number(formData.adults) || 1,
+          children: Number(formData.children) || 0,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError("Une erreur est survenue. Veuillez réessayer.");
+      console.error("RSVP submit error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -40,6 +72,16 @@ const RSVPForm = () => {
     <div className="rsvp-form">
       <h3 className="rsvp-title">Confirmez votre présence</h3>
       <form onSubmit={handleSubmit}>
+        {/* Honeypot anti-spam */}
+        <input
+          type="text"
+          name="website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+          tabIndex={-1}
+          autoComplete="off"
+        />
         {/* Nom Prénom */}
         <div className="form-group">
           <label htmlFor="fullName">Nom et Prénom *</label>
@@ -142,9 +184,12 @@ const RSVPForm = () => {
           />
         </div>
 
+        {/* Erreur */}
+        {error && <p className="rsvp-error">{error}</p>}
+
         {/* Bouton */}
-        <button type="submit" className="submit-button">
-          Envoyer
+        <button type="submit" className="submit-button" disabled={loading}>
+          {loading ? "Envoi en cours..." : "Envoyer"}
         </button>
       </form>
     </div>

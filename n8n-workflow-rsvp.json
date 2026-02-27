@@ -1,0 +1,201 @@
+{
+  "name": "Mariage - RSVP - Webhook to Notion + Google Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "rsvp-mariage",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "RSVP Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nom Complet": "={{ $json.body.fullName }}",
+            "Present": "={{ $json.body.attending }}",
+            "Adultes": "={{ $json.body.adults }}",
+            "Enfants": "={{ $json.body.children }}",
+            "Email": "={{ $json.body.email }}",
+            "Message": "={{ $json.body.message }}",
+            "Date Soumission": "={{ $json.body.submittedAt }}"
+          },
+          "schema": [
+            {
+              "id": "Nom Complet",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "Nom Complet",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Present",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "Present",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Adultes",
+              "type": "number",
+              "display": true,
+              "required": false,
+              "displayName": "Adultes",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Enfants",
+              "type": "number",
+              "display": true,
+              "required": false,
+              "displayName": "Enfants",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "Email",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "Message",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date Soumission",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "Date Soumission",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "matchingColumns": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "google-sheets",
+      "name": "Google Sheets - Append RSVP",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [550, 200],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Nom Complet|title",
+              "title": "={{ $json.body.fullName }}"
+            },
+            {
+              "key": "Present|rich_text",
+              "textContent": "={{ $json.body.attending }}"
+            },
+            {
+              "key": "Adultes|number",
+              "numberValue": "={{ $json.body.adults }}"
+            },
+            {
+              "key": "Enfants|number",
+              "numberValue": "={{ $json.body.children }}"
+            },
+            {
+              "key": "Email|email",
+              "emailValue": "={{ $json.body.email }}"
+            },
+            {
+              "key": "Message|rich_text",
+              "textContent": "={{ $json.body.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "notion-create",
+      "name": "Notion - Create RSVP Entry",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [550, 450],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "content": "## Mariage Hannah & Alan - RSVP Workflow\n\n### Configuration requise :\n1. **Google Sheets** : Ajouter credentials + configurer le Document ID et le Sheet\n2. **Notion** : Ajouter credentials + configurer le Database ID\n3. **Activer** le workflow pour que le webhook soit accessible\n\n### Colonnes Google Sheets attendues :\n`Nom Complet` | `Present` | `Adultes` | `Enfants` | `Email` | `Message` | `Date Soumission`\n\n### Proprietes Notion attendues :\n- Nom Complet (Title)\n- Present (Text)\n- Adultes (Number)\n- Enfants (Number)\n- Email (Email)\n- Message (Text)\n\n### URL Webhook (apres activation) :\n`https://alan-ohayon.app.n8n.cloud/webhook/rsvp-mariage`",
+        "width": 450,
+        "height": 500
+      },
+      "id": "sticky-note",
+      "name": "Instructions",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-150, 100]
+    }
+  ],
+  "connections": {
+    "RSVP Webhook": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Append RSVP",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notion - Create RSVP Entry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all"
+  }
+}

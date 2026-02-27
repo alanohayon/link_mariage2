@@ -10,7 +10,7 @@ const FamilyNames = ({
     "nous manque en ce jour unique",
   ],
   rightFamily = ["Mme Clara Ohayon", "M. et Mme André Ohayon"],
-  fontSize = "clamp(1.5rem, 4vw, 1.3rem)",
+  fontSize = "clamp(1.1rem, 3.5vw, 1.3rem)",
   fontFamily = "'Edwardian Script ITC', cursive",
   fontWeight = "550",
 }) => {

@@ -30,11 +30,11 @@ const HebrewTitle = ({
     <div className="hebrew-title-container">
       <svg
         className="hebrew-title-svg"
-        viewBox="0 0 400 70"
+        viewBox="-20 0 440 50"
         preserveAspectRatio="xMidYMid meet"
       >
         <defs>
-          <path id="curve" d="M 20,70 Q 200,-25 380,70" fill="transparent" />
+          <path id="curve" d="M -20,45 Q 200,8 420,45" fill="transparent" />
         </defs>
         <text className="hebrew-title-text" style={{ fontSize, fontFamily }}>
           <textPath href="#curve" startOffset="50%" textAnchor="middle">

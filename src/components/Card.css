@@ -19,8 +19,9 @@
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    padding-top: 2vh;
-    padding-bottom: clamp(2rem, 6vw, 3rem);
+    align-items: center;
+    padding-top: clamp(1.8rem, 4vh, 2.5rem);
+    padding-bottom: clamp(2rem, 5vw, 3rem);
 }
 
 @media screen and (min-width: 769px) {
