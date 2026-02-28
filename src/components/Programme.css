@@ -1,6 +1,6 @@
 .programme {
     text-align: center;
-    color: #f5f5dc;
+    color: var(--color-card-text);
     margin-top: clamp(1rem, 3vh, 2rem);
     margin-bottom: clamp(1rem, 3vh, 2rem);
     padding-left: clamp(1.5rem, 5vw, 2rem);

@@ -1,5 +1,5 @@
 .closing-text {
-    color: #f5f5dc;
+    color: var(--color-card-text);
     text-align: center;
     font-style: italic;
     width: 100%;

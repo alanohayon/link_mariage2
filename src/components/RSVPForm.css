@@ -11,9 +11,9 @@
 }
 
 .rsvp-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-size: clamp(1.6rem, 5vw, 2rem);
-    color: #f5f5dc;
+    color: var(--color-card-text);
     text-align: center;
     margin: 0;
     margin-bottom: clamp(1.5rem, 4vh, 2rem);
@@ -26,9 +26,9 @@
 
 .form-group label {
     display: block;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-size: clamp(1rem, 3vw, 1.2rem);
-    color: #f5f5dc;
+    color: var(--color-card-text);
     margin-bottom: 0.5rem;
 }
 
@@ -38,12 +38,12 @@
 .form-group textarea {
     width: 100%;
     padding: clamp(0.8rem, 2vw, 1rem);
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-size: clamp(1rem, 3vw, 1.1rem);
     border: 1px solid rgba(245, 245, 220, 0.3);
     border-radius: 0.5rem;
     background: rgba(255, 255, 255, 0.1);
-    color: #f5f5dc;
+    color: var(--color-card-text);
     outline: none;
     transition: border-color 0.2s;
 }
@@ -75,25 +75,25 @@
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-size: clamp(1rem, 3vw, 1.1rem);
-    color: #f5f5dc;
+    color: var(--color-card-text);
 }
 
 .radio-label input[type="radio"] {
     width: 1.2rem;
     height: 1.2rem;
-    accent-color: #f5f5dc;
+    accent-color: var(--color-card-text);
 }
 
 .submit-button {
     width: 100%;
     padding: clamp(1rem, 3vw, 1.2rem);
     margin-top: clamp(1rem, 3vh, 1.5rem);
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-size: clamp(1.1rem, 3.5vw, 1.3rem);
     font-weight: 600;
-    color: #2c2c2c;
+    color: var(--color-card-btn-text);
     background: linear-gradient(135deg, #f5f5dc, #e8e8c8);
     border: none;
     border-radius: 2rem;
@@ -112,8 +112,8 @@
 }
 
 .rsvp-error {
-    color: #ff6b6b;
-    font-family: 'Cormorant Garamond', serif;
+    color: var(--color-error);
+    font-family: var(--font-serif);
     font-size: clamp(0.9rem, 2.5vw, 1rem);
     text-align: center;
     margin: 0.5rem 0;
@@ -121,18 +121,18 @@
 
 .rsvp-success {
     text-align: center;
-    color: #f5f5dc;
+    color: var(--color-card-text);
 }
 
 .rsvp-success h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-size: clamp(1.8rem, 5vw, 2.2rem);
     margin: 0;
     margin-bottom: 1rem;
 }
 
 .rsvp-success p {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-size: clamp(1.1rem, 3vw, 1.3rem);
     margin: 0;
 }

@@ -11,15 +11,13 @@ import MemoryPhrase from "./MemoryPhrase";
 import Programme from "./Programme";
 import LocationMap from "./LocationMap";
 import RSVPForm from "./RSVPForm";
-import fondCarte from "../../assets/fond_carte.png";
-
 const Card = () => {
   return (
     <>
       {/* Fond fixe qui couvre tout l'écran (fix iOS) */}
       <div
         className="card-background"
-        style={{ backgroundImage: `url(${fondCarte})` }}
+        style={{ backgroundImage: `url(/images/fond_carte.png)` }}
       />
       {/* Contenu scrollable */}
       <div className="card">

@@ -1,6 +1,6 @@
 .event-date {
     text-align: center;
-    color: #f5f5dc;
+    color: var(--color-card-text);
     margin-top: clamp(0.8rem, 2vh, 1.5rem);
     margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);

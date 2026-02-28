@@ -4,7 +4,7 @@
     width: 100%;
     padding-left: clamp(0.8rem, 3.5vw, 1.5rem);
     padding-right: clamp(0.8rem, 3.5vw, 1.5rem);
-    color: #fffdf2;
+    color: var(--color-card-text-soft);
     font-style: normal;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     margin-top: clamp(2.5rem, 5vh, 4rem);

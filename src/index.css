@@ -1,15 +1,22 @@
-@font-face {
-  font-family: 'Aniyah';
-  src: url('./assets/fonts/Aniyah Free.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+/* ===== DESIGN TOKENS ===== */
+:root {
+  /* Fonts */
+  --font-cursive: 'Great Vibes', cursive;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-hebrew: 'Cardo', serif;
 
-@font-face {
-  font-family: 'Edwardian Script ITC';
-  src: url('./assets/fonts/edwardianscriptitc.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+  /* Card colors */
+  --color-card-text: #f5f5dc;
+  --color-card-text-soft: #fffdf2;
+  --color-card-btn-bg: linear-gradient(135deg, #f5f5dc, #e8e8c8);
+  --color-card-btn-text: #2c2c2c;
+  --color-error: #ff6b6b;
+
+  /* Envelope colors */
+  --color-envelope-bg: #f5f2ec;
+  --color-envelope-text: #9e9688;
+  --color-envelope-hint: #b8b0a4;
+  --color-gold-accent: #c9b98a;
 }
 
 * {

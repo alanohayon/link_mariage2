@@ -8,7 +8,7 @@ const CoupleNames = ({
   hebrewName2 = "יצחק",
   mainFontSize = "clamp(2.8rem, 9vw, 3.5rem)",
   hebrewFontSize = "clamp(1.3rem, 4.5vw, 1.5rem)",
-  mainFontFamily = "'Aniyah', cursive",
+  mainFontFamily = "'Great Vibes', cursive",
   hebrewFontFamily = "'Cardo', serif",
 }) => {
   return (

@@ -11,7 +11,7 @@ const FamilyNames = ({
   ],
   rightFamily = ["Mme Clara Ohayon", "M. et Mme André Ohayon"],
   fontSize = "clamp(1.1rem, 3.5vw, 1.3rem)",
-  fontFamily = "'Edwardian Script ITC', cursive",
+  fontFamily = "'Great Vibes', cursive",
   fontWeight = "550",
 }) => {
   return (

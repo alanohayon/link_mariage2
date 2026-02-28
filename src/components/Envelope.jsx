@@ -1,9 +1,5 @@
 import React, { useState, useCallback } from "react";
 import "./Envelope.css";
-import enveloppeVide from "../../assets/envelopp_vide.png";
-import hautEnveloppe from "../../assets/haut_enveloppe.png";
-import cachetCire from "../../assets/cachet_cire.png";
-import fondCarte from "../../assets/fond_carte.png";
 
 const Envelope = ({ children }) => {
   const [phase, setPhase] = useState("closed"); // closed | opening | emerged | fullCard
@@ -43,7 +39,7 @@ const Envelope = ({ children }) => {
         >
           {/* Envelope body (the back with fold lines) */}
           <img
-            src={enveloppeVide}
+            src="/images/envelopp_vide.png"
             alt=""
             className="envelope-body-img"
             draggable="false"
@@ -53,7 +49,7 @@ const Envelope = ({ children }) => {
           <div className="card-peek-wrapper">
             <div className="card-peek">
               <img
-                src={fondCarte}
+                src="/images/fond_carte.png"
                 alt=""
                 className="card-peek-bg"
                 draggable="false"
@@ -65,7 +61,7 @@ const Envelope = ({ children }) => {
           {/* Top flap (opens with 3D rotation) */}
           <div className="flap-top-container">
             <img
-              src={hautEnveloppe}
+              src="/images/haut_enveloppe.png"
               alt=""
               className="flap-top-img"
               draggable="false"
@@ -80,7 +76,7 @@ const Envelope = ({ children }) => {
             disabled={phase !== "closed"}
           >
             <img
-              src={cachetCire}
+              src="/images/cachet_cire.png"
               alt="Sceau de cire H&A"
               className="wax-seal-img"
               draggable="false"

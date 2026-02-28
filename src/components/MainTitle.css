@@ -1,5 +1,5 @@
 .main-title {
-    color: #f5f5dc;
+    color: var(--color-card-text);
     text-align: center;
     /* descend de ~25% avec limites min/max */
     margin-top: clamp(5rem, 5vh, 12rem);
