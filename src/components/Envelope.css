@@ -1,0 +1,331 @@
+/* ===== ENVELOPE EXPERIENCE ===== */
+
+.envelope-scene {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f5f2ec;
+  z-index: 1000;
+  overflow: hidden;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.8s;
+}
+
+.envelope-scene.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ===== ENVELOPE WRAPPER ===== */
+
+.envelope-wrapper {
+  position: relative;
+  width: min(92vw, 420px);
+  height: min(140vw, 650px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== ENVELOPE BODY (background image) ===== */
+
+.envelope-body-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+/* ===== TOP FLAP IMAGE (opens with 3D rotation) ===== */
+
+.flap-top-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65%;
+  z-index: 10;
+  transform-origin: top center;
+  perspective: 1200px;
+}
+
+.flap-top-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transform-origin: top center;
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.envelope-wrapper.opening .flap-top-img,
+.envelope-wrapper.emerged .flap-top-img {
+  transform: rotateX(-180deg);
+}
+
+/* ===== WAX SEAL (real image) ===== */
+
+.wax-seal-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -35%);
+  z-index: 20;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.3s ease;
+}
+
+.wax-seal-btn:hover {
+  transform: translate(-50%, -35%) scale(1.06);
+}
+
+.wax-seal-btn:active {
+  transform: translate(-50%, -35%) scale(0.96);
+}
+
+.wax-seal-img {
+  width: clamp(100px, 28vw, 140px);
+  height: clamp(100px, 28vw, 140px);
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(100, 85, 60, 0.3));
+  pointer-events: none;
+}
+
+/* Pulse ring around seal */
+.seal-pulse-ring {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(180, 165, 130, 0.4);
+  animation: sealPulse 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sealPulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+/* Seal break animation */
+.envelope-wrapper.opening .wax-seal-btn,
+.envelope-wrapper.emerged .wax-seal-btn {
+  animation: sealBreak 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes sealBreak {
+  0% {
+    transform: translate(-50%, -35%) scale(1);
+    opacity: 1;
+    filter: none;
+  }
+  40% {
+    transform: translate(-50%, -35%) scale(1.15) rotate(3deg);
+    opacity: 1;
+    filter: brightness(1.1);
+  }
+  100% {
+    transform: translate(-50%, -35%) scale(0.7) rotate(-5deg);
+    opacity: 0;
+    filter: brightness(1.3) blur(2px);
+  }
+}
+
+/* ===== INVITATION TEXT ===== */
+
+.envelope-invitation-text {
+  position: absolute;
+  bottom: 16%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 15;
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
+  color: #9e9688;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  animation: fadeInSoft 1.2s ease 0.6s forwards;
+}
+
+@keyframes fadeInSoft {
+  to { opacity: 1; }
+}
+
+.envelope-wrapper.opening .envelope-invitation-text,
+.envelope-wrapper.emerged .envelope-invitation-text {
+  animation: fadeOutDown 0.5s ease 0.2s forwards;
+}
+
+@keyframes fadeOutDown {
+  to {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+}
+
+/* ===== TOUCH HINT ===== */
+
+.envelope-hint {
+  position: absolute;
+  bottom: 6%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 25;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.65rem, 2.2vw, 0.8rem);
+  color: #b8b0a4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeInSoft 1s ease 2s forwards;
+}
+
+.envelope-wrapper.opening .envelope-hint,
+.envelope-wrapper.emerged .envelope-hint {
+  animation: fadeOutDown 0.3s ease forwards;
+}
+
+/* ===== CARD PEEK (visible during emerge) ===== */
+
+.card-peek-wrapper {
+  position: absolute;
+  top: 8%;
+  left: 8%;
+  right: 8%;
+  bottom: 15%;
+  z-index: 5;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.card-peek {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  color: #f5f5dc;
+  transform: translateY(110%);
+  transition: none;
+}
+
+.card-peek-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.card-peek-text {
+  position: relative;
+  z-index: 1;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+.envelope-wrapper.opening .card-peek,
+.envelope-wrapper.emerged .card-peek {
+  animation: cardSlideUp 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) 1.1s forwards;
+}
+
+@keyframes cardSlideUp {
+  0% {
+    transform: translateY(110%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+/* ===== FULL CARD VIEW ===== */
+
+.card-full-view {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.7s;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.card-full-view.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media screen and (min-width: 769px) {
+  .envelope-wrapper {
+    width: min(45vw, 440px);
+    height: min(60vw, 660px);
+  }
+}
+
+/* ===== PARTICLE DUST ON SEAL BREAK ===== */
+
+.seal-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 21;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #c9b98a;
+  opacity: 0;
+}
+
+.envelope-wrapper.opening .particle {
+  animation: particleBurst 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.particle:nth-child(1) { top: 48%; left: 48%; animation-delay: 0.3s; --tx: -30px; --ty: -40px; }
+.particle:nth-child(2) { top: 50%; left: 52%; animation-delay: 0.32s; --tx: 35px; --ty: -30px; }
+.particle:nth-child(3) { top: 52%; left: 46%; animation-delay: 0.28s; --tx: -25px; --ty: 35px; }
+.particle:nth-child(4) { top: 48%; left: 54%; animation-delay: 0.35s; --tx: 40px; --ty: 25px; }
+.particle:nth-child(5) { top: 50%; left: 50%; animation-delay: 0.3s; --tx: -15px; --ty: -45px; }
+.particle:nth-child(6) { top: 49%; left: 51%; animation-delay: 0.33s; --tx: 20px; --ty: 40px; }
+
+@keyframes particleBurst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0.3);
+  }
+}

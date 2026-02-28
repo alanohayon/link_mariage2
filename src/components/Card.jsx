@@ -11,7 +11,7 @@ import MemoryPhrase from "./MemoryPhrase";
 import Programme from "./Programme";
 import LocationMap from "./LocationMap";
 import RSVPForm from "./RSVPForm";
-import fondCarte from "../../assets/Fond_carte.png";
+import fondCarte from "../../assets/fond_carte.png";
 
 const Card = () => {
   return (

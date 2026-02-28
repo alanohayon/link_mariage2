@@ -1,9 +1,12 @@
 import React from 'react'
+import Envelope from './components/Envelope'
 import Card from './components/Card'
 
 function App() {
   return (
-    <Card />
+    <Envelope initials="H&A">
+      <Card />
+    </Envelope>
   )
 }
 
