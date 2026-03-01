@@ -40,7 +40,38 @@
     /* 🔴 [NE PAS TOUCHER] Centre tout le contenu de la grille */
 }
 
-/* Le rabat (haut) -- superpose sur le bas via grid-area */
+/* ---- Lueur divine ---- */
+.envelope__glow {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0;
+    /* 🟢 [MODIFIABLE] Couleur et forme de la lueur */
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 248, 220, 0.9) 0%,
+        rgba(255, 240, 190, 0.6) 25%,
+        rgba(255, 230, 160, 0.3) 50%,
+        transparent 75%
+    );
+    transition: opacity 0.5s ease-out;
+    pointer-events: none;
+}
+
+/* Pendant l'ouverture : lueur commence à apparaître doucement */
+.envelope--opening .envelope__glow {
+    opacity: 0.4;
+    transition: opacity 1.8s ease-in;
+}
+
+/* Pendant la disparition : lueur à pleine puissance */
+.envelope--vanishing .envelope__glow {
+    opacity: 1;
+    transition: opacity 0.6s ease-out;
+}
+
+/* ---- Le rabat (haut) ---- */
 .envelope__flap {
     grid-area: 1 / 1;
     /* 🔴 [NE PAS TOUCHER] Place l'image dans la même case de grille que le bas */
@@ -59,27 +90,34 @@
     transform: translateY(-12%);
     /* 🟢 [MODIFIABLE] Décalage vertical du rabat vers le haut */
 
-    /* 🟢 [MODIFIABLE] Temps d'ouverture. (0.9s = 900ms). Si changé, adapter le JS dans Envelope.jsx */
-    transition: transform 1.8s ease-in-out, filter 1.8s ease-in-out;
+    /* 🟢 [MODIFIABLE] Temps d'ouverture (1.8s). Si changé, adapter le JS dans Envelope.jsx */
+    transition: transform 1.8s ease-in-out, filter 1.8s ease-in-out, opacity 1.8s ease-in-out;
 
     z-index: 2;
     /* 🔴 [NE PAS TOUCHER] Assure que le haut est par-dessus le bas */
 
-    /* 🟢 [MODIFIABLE] Ombre sous le rabat/sceau. (X Y Flou Couleur) */
-    filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.4));
+    /* 🟢 [MODIFIABLE] Ombre sous le rabat — beige chaud, légère au repos */
+    filter: drop-shadow(0 4px 8px rgba(160, 145, 120, 0.25));
 }
 
-/* Ouverture : le bas du rabat se souleve legerement, le haut reste fixe */
-.envelope--opening .envelope__flap,
-.envelope--revealing .envelope__flap {
-    /* 🟢 [MODIFIABLE] Angle de rotation à l'ouverture (25deg soulève légèrement pour laisser passer la lettre) */
+/* Ouverture : le rabat se soulève — l'ombre grandit progressivement pendant 1.8s */
+.envelope--opening .envelope__flap {
+    /* 🟢 [MODIFIABLE] Angle de rotation à l'ouverture */
     transform: translateY(-15%) rotateX(25deg);
-
-    /* 🟢 [MODIFIABLE] Ombre quand l'enveloppe est ouverte (souvent plus faible car l'image pivote) */
-    filter: drop-shadow(0 -7px 9px rgba(0, 0, 0, 0.1));
+    /* 🟢 [MODIFIABLE] Ombre visible : le rabat s'éloigne du papier, ombre large et marquée */
+    filter: drop-shadow(0 35px 50px rgba(140, 125, 95, 0.6));
 }
 
-/* Le bas de l'enveloppe -- meme cellule grid que le rabat */
+/* Disparition : le haut glisse vers le haut et disparaît */
+.envelope--vanishing .envelope__flap {
+    transform: translateY(-100%);
+    opacity: 0;
+    filter: drop-shadow(0 0 0 transparent);
+    /* 🟢 [MODIFIABLE] Durée de la disparition du haut (1s) */
+    transition: transform 1s ease-in, opacity 1s ease-in, filter 0.5s ease-out;
+}
+
+/* ---- Le bas de l'enveloppe ---- */
 .envelope__bottom {
     grid-area: 1 / 1;
     /* 🔴 [NE PAS TOUCHER] Place cette image sous le rabat (même case de grille) */
@@ -93,11 +131,21 @@
     /* 🔴 [NE PAS TOUCHER] Structure standard pour une image conteneur */
     z-index: 1;
     /* 🔴 [NE PAS TOUCHER] Assure que le bas est en-dessous du rabat (z-index 2) */
-    transform: translateY(-8%);
+    transform: translateY(-10%);
     /* 🟢 [MODIFIABLE] Décalage vertical du bas vers le haut */
+
+    transition: transform 1.8s ease-in-out, opacity 1.8s ease-in-out;
 }
 
-/* Indication de tap ("Appuyez pour ouvrir") */
+/* Disparition : le bas glisse vers le bas et disparaît */
+.envelope--vanishing .envelope__bottom {
+    transform: translateY(100%);
+    opacity: 0;
+    /* 🟢 [MODIFIABLE] Durée de la disparition du bas (1s) */
+    transition: transform 1s ease-in, opacity 1s ease-in;
+}
+
+/* ---- Indication de tap ("Appuyez pour ouvrir") ---- */
 .envelope__hint {
     position: absolute;
     /* 🔴 [NE PAS TOUCHER] Permet de placer le texte indépendamment de l'enveloppe */
@@ -144,9 +192,31 @@
     }
 }
 
-/* Quand l'enveloppe s'ouvre, masquer l'indice */
+/* ---- Responsive : écrans courts (iPhone 14 Plus, SE, etc.) ---- */
+@media screen and (max-height: 800px) {
+    .envelope__flap {
+        transform: translateY(-18%);
+        /* 🟢 [MODIFIABLE] Remonte le rabat davantage sur écrans courts */
+    }
+
+    .envelope--opening .envelope__flap {
+        transform: translateY(-21%) rotateX(25deg);
+    }
+
+    .envelope__bottom {
+        transform: translateY(-16%);
+        /* 🟢 [MODIFIABLE] Remonte le bas davantage sur écrans courts */
+    }
+
+    .envelope__hint {
+        bottom: 5%;
+        /* 🟢 [MODIFIABLE] Texte plus bas pour ne pas chevaucher le sceau */
+    }
+}
+
+/* Quand l'enveloppe s'ouvre ou disparaît, masquer l'indice */
 .envelope--opening .envelope__hint,
-.envelope--revealing .envelope__hint {
+.envelope--vanishing .envelope__hint {
     opacity: 0;
     /* 🔴 [NE PAS TOUCHER] Rend le texte invisible lors du survol/clic */
     transition: opacity 0.3s;

@@ -1,7 +1,28 @@
 import React, { useState } from "react";
 import "./RSVPForm.css";
 
-const RSVPForm = () => {
+const defaultT = {
+  title: "Confirmez votre présence",
+  fullName: "Nom et Prénom *",
+  fullNamePlaceholder: "Votre nom complet",
+  attending: "Serez-vous présent(e) ? *",
+  yes: "Oui, avec joie !",
+  no: "Malheureusement non",
+  adults: "Nombre d'adultes *",
+  children: "Nombre d'enfants (-6 ans)",
+  optional: "Optionnel",
+  email: "Email *",
+  emailPlaceholder: "votre@email.com",
+  message: "Message pour les mariés",
+  messagePlaceholder: "Un petit mot... (optionnel)",
+  submit: "Envoyer",
+  submitting: "Envoi en cours...",
+  successTitle: "Merci !",
+  successMessage: "Votre réponse a bien été enregistrée.",
+  error: "Une erreur est survenue. Veuillez réessayer.",
+};
+
+const RSVPForm = ({ lang = "fr", t = defaultT }) => {
   const [formData, setFormData] = useState({
     fullName: "",
     attending: "",
@@ -59,18 +80,18 @@ const RSVPForm = () => {
 
   if (submitted) {
     return (
-      <div className="rsvp-form">
+      <div className={`rsvp-form ${lang === "he" ? "rtl" : ""}`}>
         <div className="rsvp-success">
-          <h3>Merci !</h3>
-          <p>Votre réponse a bien été enregistrée.</p>
+          <h3>{t.successTitle}</h3>
+          <p>{t.successMessage}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="rsvp-form">
-      <h3 className="rsvp-title">Confirmez votre présence</h3>
+    <div className={`rsvp-form ${lang === "he" ? "rtl" : ""}`}>
+      <h3 className="rsvp-title">{t.title}</h3>
       <form onSubmit={handleSubmit}>
         {/* Honeypot anti-spam */}
         <input
@@ -84,7 +105,7 @@ const RSVPForm = () => {
         />
         {/* Nom Prénom */}
         <div className="form-group">
-          <label htmlFor="fullName">Nom et Prénom *</label>
+          <label htmlFor="fullName">{t.fullName}</label>
           <input
             type="text"
             id="fullName"
@@ -92,13 +113,13 @@ const RSVPForm = () => {
             value={formData.fullName}
             onChange={handleChange}
             required
-            placeholder="Votre nom complet"
+            placeholder={t.fullNamePlaceholder}
           />
         </div>
 
         {/* Présence */}
         <div className="form-group">
-          <label>Serez-vous présent(e) ? *</label>
+          <label>{t.attending}</label>
           <div className="radio-group">
             <label className="radio-label">
               <input
@@ -109,7 +130,7 @@ const RSVPForm = () => {
                 onChange={handleChange}
                 required
               />
-              <span>Oui, avec joie !</span>
+              <span>{t.yes}</span>
             </label>
             <label className="radio-label">
               <input
@@ -119,7 +140,7 @@ const RSVPForm = () => {
                 checked={formData.attending === "Non"}
                 onChange={handleChange}
               />
-              <span>Malheureusement non</span>
+              <span>{t.no}</span>
             </label>
           </div>
         </div>
@@ -128,7 +149,7 @@ const RSVPForm = () => {
         {formData.attending === "Oui" && (
           <>
             <div className="form-group">
-              <label htmlFor="adults">Nombre d'adultes *</label>
+              <label htmlFor="adults">{t.adults}</label>
               <input
                 type="number"
                 id="adults"
@@ -142,7 +163,7 @@ const RSVPForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="children">Nombre d'enfants (-6 ans)</label>
+              <label htmlFor="children">{t.children}</label>
               <input
                 type="number"
                 id="children"
@@ -152,14 +173,14 @@ const RSVPForm = () => {
                 value={formData.children}
                 onChange={handleChange}
               />
-              <span className="form-hint">Optionnel</span>
+              <span className="form-hint">{t.optional}</span>
             </div>
           </>
         )}
 
         {/* Email */}
         <div className="form-group">
-          <label htmlFor="email">Email *</label>
+          <label htmlFor="email">{t.email}</label>
           <input
             type="email"
             id="email"
@@ -167,29 +188,29 @@ const RSVPForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            placeholder="votre@email.com"
+            placeholder={t.emailPlaceholder}
           />
         </div>
 
         {/* Message */}
         <div className="form-group">
-          <label htmlFor="message">Message pour les mariés</label>
+          <label htmlFor="message">{t.message}</label>
           <textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Un petit mot... (optionnel)"
+            placeholder={t.messagePlaceholder}
             rows="3"
           />
         </div>
 
         {/* Erreur */}
-        {error && <p className="rsvp-error">{error}</p>}
+        {error && <p className="rsvp-error">{t.error}</p>}
 
         {/* Bouton */}
         <button type="submit" className="submit-button" disabled={loading}>
-          {loading ? "Envoi en cours..." : "Envoyer"}
+          {loading ? t.submitting : t.submit}
         </button>
       </form>
     </div>

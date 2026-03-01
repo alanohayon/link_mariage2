@@ -3,17 +3,23 @@
     color: var(--color-beige);
     font-family: var(--font-body);
     margin-top: clamp(1rem, 3vh, 2rem);
-    margin-bottom: clamp(1rem, 3vh, 2rem);
+    margin-bottom: 0;
     padding-left: clamp(2rem, 8vw, 3rem);
     padding-right: clamp(2rem, 8vw, 3rem);
-    text-shadow: var(--shadow-text);
+    text-shadow: 1px 1px 2px var(--color-text-shadow), 0 0 8px rgba(59, 53, 36, 0.3);
     width: 100%;
 }
 
 .memory-phrase p {
-    font-size: var(--fs-body);
-    font-style: italic;
+    font-size: clamp(1.38rem, 4.42vw, 1.66rem);
+    font-weight: 550;
+    /* font-style: italic; */
     line-height: 1.5;
     margin: 0;
     opacity: 1;
+}
+
+/* Hébreu - taille augmentée */
+.card.rtl .memory-phrase p {
+    font-size: clamp(1.6rem, 5vw, 1.9rem);
 }

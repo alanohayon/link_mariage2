@@ -19,3 +19,92 @@
         padding-top: 12vh;
     }
 }
+
+/* RTL support for Hebrew */
+.card.rtl {
+    direction: rtl;
+}
+
+.card.rtl,
+.card.rtl p,
+.card.rtl h1,
+.card.rtl h2,
+.card.rtl h3,
+.card.rtl span,
+.card.rtl label,
+.card.rtl input,
+.card.rtl textarea,
+.card.rtl button,
+.card.rtl .announcement-text,
+.card.rtl .closing-text,
+.card.rtl .event-location,
+.card.rtl .memory-phrase,
+.card.rtl .rsvp-form,
+.card.rtl .map-button {
+    font-family: 'Cardo', serif !important;
+}
+
+.card.rtl .family-column.left {
+    text-align: right;
+}
+
+.card.rtl .family-column.right {
+    text-align: left;
+}
+
+/* CoupleNames garde son style en hébreu */
+.card.rtl .couple-names,
+.card.rtl .couple-names h2,
+.card.rtl .couple-names span {
+    direction: ltr;
+}
+
+.card.rtl .couple-names .names-main {
+    font-family: 'Aniyah', cursive !important;
+}
+
+.card.rtl .couple-names .hebrew-name {
+    font-family: 'Cardo', serif !important;
+}
+
+/* Houppa info */
+.houppa-info {
+    font-family: var(--font-body);
+    font-size: clamp(1.3rem, 4.2vw, 1.56rem);
+    font-style: italic;
+    color: var(--color-beige);
+    text-align: center;
+    margin: clamp(0.8rem, 2vh, 1.2rem) 0;
+    padding: 0 var(--padding-section-x);
+    text-shadow: var(--shadow-text);
+}
+
+.houppa-info.rtl {
+    font-family: 'Cardo', serif;
+    direction: rtl;
+}
+
+/* Supprime la marge entre EventLocation et houppa-info */
+.event-location + .houppa-info {
+    margin-top: 0;
+}
+
+/* Supprime la marge entre MemoryPhrase et la liste des grands-parents */
+.memory-phrase + .houppa-info {
+    margin-top: 0;
+}
+
+/* Welcome text before RSVP (Hebrew) */
+.welcome-text {
+    font-family: 'Cardo', serif;
+    font-size: clamp(1.5rem, 4.5vw, 1.8rem);
+    font-weight: 600;
+    color: var(--color-beige);
+    text-align: center;
+    margin: clamp(1.5rem, 4vh, 2rem) 0 clamp(0.5rem, 2vh, 1rem);
+    text-shadow: var(--shadow-text);
+}
+
+.welcome-text.rtl {
+    direction: rtl;
+}

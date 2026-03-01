@@ -8,13 +8,24 @@
     width: 100%;
 }
 
-.map-title {
-    font-family: var(--font-body);
-    font-size: clamp(1.3rem, 3.8vw, 1.6rem);
-    font-weight: 600;
-    margin: 0;
-    margin-bottom: clamp(0.6rem, 2vh, 1rem);
-    text-shadow: var(--shadow-text);
+.map-embed {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    margin-bottom: clamp(0.8rem, 2vh, 1.2rem);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.map-embed iframe {
+    width: 100%;
+    height: calc(100% + 60px);
+    border: none;
+    position: absolute;
+    top: -60px;
+    left: 0;
+    filter: sepia(25%) saturate(35%) contrast(85%) brightness(115%);
 }
 
 .map-buttons {
@@ -41,9 +52,53 @@
 }
 
 .map-button.waze {
-    background: #33ccff;
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(51, 204, 255, 0.4);
+    position: relative;
+    background: transparent;
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    color: var(--color-cream);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Reflet lumineux en haut */
+.map-button.waze::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+/* Effet de réfraction subtil */
+.map-button.waze::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at 30% 20%,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%
+    );
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+.map-button.waze:active {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 .waze-icon {

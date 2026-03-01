@@ -1,13 +1,12 @@
 .couple-names {
     text-align: center;
     color: var(--color-beige);
-    margin-top: clamp(1rem, 3vw, 1.5rem);
-    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    margin-top: clamp(2.5rem, 6vw, 3rem);
+    margin-bottom: clamp(2.5rem, 6vw, 3rem);
     width: 100%;
 }
 
 .names-main {
-    font-weight: 400;
     margin: 0;
     white-space: nowrap;
     text-shadow: var(--shadow-text-strong);
@@ -16,8 +15,8 @@
 .hebrew-names {
     display: flex;
     justify-content: center;
-    gap: clamp(2rem, 8vw, 4rem);
-    margin-top: clamp(0.3rem, 1vw, 0.5rem);
+    gap: clamp(8rem, 14vw, 16rem);
+    margin-top: clamp(0rem, 0.5vw, 0.7rem);
     direction: ltr;
 }
 

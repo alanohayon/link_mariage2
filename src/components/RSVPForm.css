@@ -136,3 +136,14 @@
     font-size: var(--fs-small);
     margin: 0;
 }
+
+/* RTL support */
+.rsvp-form.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+.rsvp-form.rtl .form-hint {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}

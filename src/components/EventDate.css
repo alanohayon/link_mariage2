@@ -2,22 +2,31 @@
     text-align: center;
     color: var(--color-beige);
     font-family: var(--font-body);
-    margin-top: clamp(0.8rem, 2vh, 1.5rem);
+    margin-top: clamp(0.2rem, 1vh, 1.5rem);
     margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
     text-shadow: var(--shadow-text);
     width: 100%;
 }
 
 .event-date .date {
-    font-size: var(--fs-large-title);
-    font-weight: 600;
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    font-weight: 700;
     margin: 0;
     letter-spacing: 0.02em;
 }
 
 .event-date .time {
-    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+    font-size: clamp(2.2rem, 6vw, 3.25rem);
     font-style: italic;
+    font-weight: 550;
     margin: 0;
     margin-top: 0.2rem;
+}
+
+.event-date .houppa {
+    font-size: clamp(1.5rem, 3.5vw, 1.2rem);
+    font-style: italic;
+    font-weight: 550;
+    margin: 1rem;
+    opacity: 0.85;
 }

@@ -2,14 +2,14 @@
     text-align: center;
     color: var(--color-beige);
     font-family: var(--font-body);
-    margin-top: clamp(0.5rem, 1.5vh, 1rem);
-    margin-bottom: clamp(1rem, 2.5vh, 1.5rem);
+    margin-top: clamp(1rem, 3vw, 1.5rem);
+    margin-bottom: 0;
     text-shadow: var(--shadow-text);
     width: 100%;
 }
 
 .event-location .venue {
-    font-size: clamp(1.8rem, 5.5vw, 2.4rem);
+    font-size: clamp(2.59rem, 7.92vw, 3.46rem);
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -17,8 +17,9 @@
 }
 
 .event-location .address {
-    font-size: clamp(1.1rem, 3.2vw, 1.4rem);
+    font-size: clamp(1.58rem, 4.61vw, 2.02rem);
     font-style: italic;
+    font-weight: 550;
     margin: 0;
     margin-top: 0.2rem;
 }

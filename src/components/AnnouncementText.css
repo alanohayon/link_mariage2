@@ -2,18 +2,24 @@
     color: var(--color-beige);
     text-align: center;
     font-family: var(--font-body);
-    font-style: italic;
+    /* font-style: italic; */
     width: 100%;
     padding-left: var(--padding-section-x);
     padding-right: var(--padding-section-x);
-    margin-top: clamp(1.2rem, 3vw, 1.8rem);
+    margin-top: clamp(2.3rem, 6vw, 3rem);
     margin-bottom: clamp(0.8rem, 2vw, 1.2rem);
-    text-shadow: var(--shadow-text);
+    text-shadow: 1px 1px 2px var(--color-text-shadow), 0 0 8px rgba(59, 53, 36, 0.3);
 }
 
 .announcement-text p {
     margin-top: clamp(0.1rem, 0.5vw, 0.2rem);
     margin-bottom: clamp(0.1rem, 0.5vw, 0.2rem);
-    font-size: var(--fs-body);
+    font-size: clamp(1.38rem, 4.42vw, 1.66rem);
+    font-weight: 550;
     line-height: 1.5;
+}
+
+/* Hébreu - taille +20% */
+.card.rtl .announcement-text p {
+    font-size: clamp(1.66rem, 5.3vw, 2rem);
 }
