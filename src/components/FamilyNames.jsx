@@ -7,7 +7,7 @@ const FamilyNames = ({
     "Mme Alexandra Cohen",
   ],
   rightFamily = ["Mme Clara Ohayon", "M. et Mme André Ohayon"],
-  memorial = "A mon père Joël Cohen Z'l qui nous manque en ce jour unique",
+  memorial = "A mon père Joël Cohen Z'l qui \n nous manque en ce jour unique",
   dressCode = "",
   fontSize = "clamp(1.3rem, 4.6vw, 1.7rem)",
   fontWeight = "550",

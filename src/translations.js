@@ -4,7 +4,7 @@ export const translations = {
     familyNames: {
       leftFamily: ["M. et Mme Daniel Klangowiks", "Mme Alexandra Cohen"],
       rightFamily: ["Mme Clara Ohayon", "M. et Mme André Ohayon"],
-      memorial: "A mon père Joël Cohen Z'l qui nous manque en ce jour unique",
+      memorial: "A mon père Joël Cohen Z'l qui \n nous manque en ce jour unique",
       dressCode: "Une tenue correcte réjouira les mariés",
     },
     announcement: [
@@ -14,7 +14,7 @@ export const translations = {
     closing: [
       "Et seront honorés de votre présence à la Houppa qui sera célébrée le",
     ],
-    houppa: "La Houppa commencera 30min avant le coucher du soleil",
+    houppa: "La Houppa débutera 30 minutes avant le coucher du soleil",
     reception: "Ainsi qu'à la réception qui suivra",
     location: {
       venuePrefix: "Dans les salons",
