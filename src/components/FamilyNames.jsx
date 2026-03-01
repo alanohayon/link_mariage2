@@ -8,6 +8,7 @@ const FamilyNames = ({
   ],
   rightFamily = ["Mme Clara Ohayon", "M. et Mme André Ohayon"],
   memorial = "A mon père Joël Cohen Z'l qui nous manque en ce jour unique",
+  dressCode = "",
   fontSize = "clamp(1.3rem, 4.6vw, 1.7rem)",
   fontWeight = "550",
   lang = "fr",
@@ -32,7 +33,10 @@ const FamilyNames = ({
         </div>
       </div>
       {memorial && (
-        <p className="family-memorial">{memorial}</p>
+        <p className={`family-memorial ${lang === "he" ? "rtl" : ""}`}>{memorial}</p>
+      )}
+      {dressCode && (
+        <p className={`family-dress-code ${lang === "he" ? "rtl" : ""}`}>{dressCode}</p>
       )}
     </div>
   );

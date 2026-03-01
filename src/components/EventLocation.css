@@ -1,7 +1,7 @@
 .event-location {
     text-align: center;
     color: var(--color-beige);
-    font-family: var(--font-body);
+    font-family: var(--font-family-names);
     margin-top: clamp(1rem, 3vw, 1.5rem);
     margin-bottom: 0;
     text-shadow: var(--shadow-text);
@@ -9,11 +9,17 @@
 }
 
 .event-location .venue {
-    font-size: clamp(2.59rem, 7.92vw, 3.46rem);
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.05em;
     margin: 0;
+}
+
+.event-location .venue-prefix {
+    font-size: clamp(1.2rem, 5vw, 2.2rem);
+}
+
+.event-location .venue-name {
+    font-size: clamp(2.59rem, 7.92vw, 3.46rem);
 }
 
 .event-location .address {

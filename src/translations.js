@@ -5,21 +5,24 @@ export const translations = {
       leftFamily: ["M. et Mme Daniel Klangowiks", "Mme Alexandra Cohen"],
       rightFamily: ["Mme Clara Ohayon", "M. et Mme André Ohayon"],
       memorial: "A mon père Joël Cohen Z'l qui nous manque en ce jour unique",
+      dressCode: "Une tenue correcte réjouira les mariés",
     },
     announcement: [
       "Ont la joie de vous faire part du",
       "mariage de leurs petits enfants et enfants",
     ],
     closing: [
-      "Et seront honorés de votre présence à la Houpa qui sera célébrée le",
+      "Et seront honorés de votre présence à la Houppa qui sera célébrée le",
     ],
     houppa: "La Houppa commencera 30min avant le coucher du soleil",
+    reception: "Ainsi qu'à la réception qui suivra",
     location: {
-      venue: "KEDMA",
+      venuePrefix: "Dans les salons",
+      venueName: "Kedma",
       address: "Neve Ilan",
     },
     memory: "Une douce pensée à nos grands-parents qui veillent sur nous",
-    grandparents: "Papi Elie Ohayon, Mamie Rachelle Dahan, Papi Elie Dahan, Mamie Betty et Papi Yehouda Cohen Z\"l",
+    grandparents: "Papi Elie Ohayon, Mamie Rachelle Dahan, Papi Armand Dahan, Mamie Betty et Papi Yehouda Cohen Z\"l",
     map: {
       openWaze: "Ouvrir dans Waze",
     },
@@ -49,7 +52,8 @@ export const translations = {
     familyNames: {
       leftFamily: ["דניאל ויולה קלנגוויקס", "אלכסנדרה כהן"],
       rightFamily: ["קלארה אוחיון", "אנדריי ורנה אוחיון"],
-      memorial: "לזכר אבי יואל כהן ז״ל שחסר לנו ביום מיוחד זה",
+      memorial: "יואל יעקב ז״ל, שחסר לנו מאוד ביום המיוחד הזה",
+      dressCode: "לבוש צנוע יהלום את האירוע",
     },
     announcement: [
       "שמחים ונרגשים להזמינכם",
@@ -57,15 +61,18 @@ export const translations = {
     ],
     closing: [
       "שתיערך ביום",
+      "יום שני כ״ד אייר תשפ״ו",
     ],
-    houppa: "החופה תחל 30 דק לפני השקיע הקבלת פנים תתקיים מיד אחרי טקס החופה",
+    houppa: "החופה תחל 30 דק לפני השקיע\nהקבלת פנים תתקיים מיד אחרי טקס החופה \n",
     date: "11/05/26",
+    reception: "",
     location: {
-      venue: "אולם ״קדמא״",
+      venuePrefix: "אולמ",
+      venueName: "'קדמא'",
       address: "נווה אילן",
     },
-    memory: "נשמח לראותכם",
-    grandparents: "סבא אלי אוחיון, סבתא רחל דהן, סבא אלי דהן, סבתא בטי וסבא יהודה כהן ז״ל",
+    memory: "",
+    grandparents: "",
     map: {
       openWaze: "פתח ב-Waze",
     },

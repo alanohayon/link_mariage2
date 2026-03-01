@@ -3,7 +3,7 @@
     color: var(--color-beige);
     font-family: var(--font-body);
     margin-top: clamp(1rem, 3vh, 2rem);
-    margin-bottom: 0;
+    margin-bottom: clamp(0.8rem, 2vh, 1.2rem);
     padding-left: clamp(2rem, 8vw, 3rem);
     padding-right: clamp(2rem, 8vw, 3rem);
     text-shadow: 1px 1px 2px var(--color-text-shadow), 0 0 8px rgba(59, 53, 36, 0.3);

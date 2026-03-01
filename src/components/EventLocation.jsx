@@ -2,12 +2,16 @@ import React from "react";
 import "./EventLocation.css";
 
 const EventLocation = ({
-  venue = "KEDMA",
+  venuePrefix = "Dans les salons",
+  venueName = "Kedma",
   address = "Neve Ilan",
 }) => {
   return (
     <div className="event-location">
-      <p className="venue">{venue}</p>
+      <p className="venue">
+        <span className="venue-prefix">{venuePrefix}</span>{" "}
+        <span className="venue-name">{venueName}</span>
+      </p>
       <p className="address">{address}</p>
     </div>
   );

@@ -33,12 +33,15 @@ const Card = () => {
       <CoupleNames />
       <ClosingText lines={t.closing} />
       <EventDate lang={lang} dateHe={t.date} />
-      <EventLocation venue={t.location.venue} address={t.location.address} />
+      <p className={`reception-text ${lang === "he" ? "rtl" : ""}`}>{t.reception}</p>
+      <EventLocation venuePrefix={t.location.venuePrefix} venueName={t.location.venueName} address={t.location.address} />
       <p className={`houppa-info ${lang === "he" ? "rtl" : ""}`}>{t.houppa}</p>
       <MemoryPhrase text={t.memory} />
       <p className={`houppa-info ${lang === "he" ? "rtl" : ""}`}>{t.grandparents}</p>
+      {t.familyNames.dressCode && (
+        <p className={`dress-code ${lang === "he" ? "rtl" : ""}`}>{t.familyNames.dressCode}</p>
+      )}
       <LocationMap lang={lang} />
-      {lang === "he" && <p className="welcome-text rtl">נשמח לראותכם</p>}
       <RSVPForm lang={lang} t={t.rsvp} />
     </div>
   );

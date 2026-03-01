@@ -15,7 +15,7 @@ const EventDate = ({
       {lang === "he" ? (
         <>
           <p className="time">חופה וקידושין</p>
-          <p className="time">17h</p>
+          <p className="time">17:00</p>
         </>
       ) : (
         <p className="time">à {time}</p>
