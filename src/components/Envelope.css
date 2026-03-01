@@ -28,7 +28,7 @@
 .envelope {
     position: relative;
     /* 🔴 [NE PAS TOUCHER] Nécessaire pour placer les éléments absolus à l'intérieur */
-    width: 100%;
+    width: 110%;
     /* 🔴 [NE PAS TOUCHER] Largeur maximum calculée par rapport au container */
     height: 100dvh;
     /* 🟢 [MODIFIABLE] Hauteur de l'enveloppe */
@@ -56,6 +56,8 @@
     /* 🔴 [NE PAS TOUCHER] Évite des espaces fantômes habituels sur les images inline */
     transform-origin: top center;
     /* 🔴 [NE PAS TOUCHER] Point de pivot de l'animation (le rabat tourne depuis le haut) */
+    transform: translateY(-12%);
+    /* 🟢 [MODIFIABLE] Décalage vertical du rabat vers le haut */
 
     /* 🟢 [MODIFIABLE] Temps d'ouverture. (0.9s = 900ms). Si changé, adapter le JS dans Envelope.jsx */
     transition: transform 1.8s ease-in-out, filter 1.8s ease-in-out;
@@ -70,8 +72,8 @@
 /* Ouverture : le bas du rabat se souleve legerement, le haut reste fixe */
 .envelope--opening .envelope__flap,
 .envelope--revealing .envelope__flap {
-    /* 🟢 [MODIFIABLE] Angle de rotation à l'ouverture (15degsoulève légèrement pour laisser passer la lettre) */
-    transform: rotateX(25deg);
+    /* 🟢 [MODIFIABLE] Angle de rotation à l'ouverture (25deg soulève légèrement pour laisser passer la lettre) */
+    transform: translateY(-15%) rotateX(25deg);
 
     /* 🟢 [MODIFIABLE] Ombre quand l'enveloppe est ouverte (souvent plus faible car l'image pivote) */
     filter: drop-shadow(0 -7px 9px rgba(0, 0, 0, 0.1));
@@ -91,6 +93,8 @@
     /* 🔴 [NE PAS TOUCHER] Structure standard pour une image conteneur */
     z-index: 1;
     /* 🔴 [NE PAS TOUCHER] Assure que le bas est en-dessous du rabat (z-index 2) */
+    transform: translateY(-8%);
+    /* 🟢 [MODIFIABLE] Décalage vertical du bas vers le haut */
 }
 
 /* Indication de tap ("Appuyez pour ouvrir") */
