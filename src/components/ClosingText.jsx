@@ -3,7 +3,7 @@ import "./ClosingText.css";
 
 const ClosingText = ({
   lines = [
-    "Et seront honorés de votre présence à la Houpa qui sera célébrée le",
+    "Et seront honorés de votre présence à la Houppa qui sera célébrée le",
   ],
 }) => {
   return (

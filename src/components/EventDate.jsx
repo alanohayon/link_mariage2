@@ -4,7 +4,7 @@ import "./EventDate.css";
 const EventDate = ({
   date = "Lundi 11 mai 2026",
   dateHe = "11/05/26",
-  time = "17h",
+  time = "17h00",
   lang = "fr",
 }) => {
   const displayDate = lang === "he" ? dateHe : date;

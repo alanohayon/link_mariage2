@@ -33,8 +33,6 @@ const Envelope = ({ onOpen }) => {
           className="envelope__bottom"
         />
 
-        {/* Indication de tap */}
-        <p className="envelope__hint">Appuyez pour ouvrir</p>
       </div>
     </div>
   );

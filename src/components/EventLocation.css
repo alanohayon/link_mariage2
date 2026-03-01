@@ -15,15 +15,15 @@
 }
 
 .event-location .venue-prefix {
-    font-size: clamp(1.2rem, 5vw, 2.2rem);
+    font-size: clamp(2.3rem, 7vw, 2.9rem);
 }
 
 .event-location .venue-name {
-    font-size: clamp(2.59rem, 7.92vw, 3.46rem);
+    font-size: clamp(3rem, 8vw, 3.5rem);
 }
 
 .event-location .address {
-    font-size: clamp(1.58rem, 4.61vw, 2.02rem);
+    font-size: clamp(2.1rem, 6vw, 2.5rem);
     font-style: italic;
     font-weight: 550;
     margin: 0;
