@@ -11,31 +11,22 @@ import MemoryPhrase from "./MemoryPhrase";
 import Programme from "./Programme";
 import LocationMap from "./LocationMap";
 import RSVPForm from "./RSVPForm";
-import fondCarte from "../../assets/Fond_carte.png";
 
 const Card = () => {
   return (
-    <>
-      {/* Fond fixe qui couvre tout l'écran (fix iOS) */}
-      <div
-        className="card-background"
-        style={{ backgroundImage: `url(${fondCarte})` }}
-      />
-      {/* Contenu scrollable */}
-      <div className="card">
-        <HebrewTitle />
-        <FamilyNames />
-        <AnnouncementText />
-        <CoupleNames />
-        <ClosingText />
-        <EventDate />
-        <EventLocation />
-        <MemoryPhrase />
-        <Programme />
-        <LocationMap />
-        <RSVPForm />
-      </div>
-    </>
+    <div className="card">
+      <HebrewTitle />
+      <FamilyNames />
+      <AnnouncementText />
+      <CoupleNames />
+      <ClosingText />
+      <EventDate />
+      <EventLocation />
+      <MemoryPhrase />
+      <Programme />
+      <LocationMap />
+      <RSVPForm />
+    </div>
   );
 };
 

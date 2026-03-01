@@ -1,18 +1,19 @@
 .memory-phrase {
     text-align: center;
-    color: #f5f5dc;
+    color: var(--color-beige);
+    font-family: var(--font-body);
     margin-top: clamp(1rem, 3vh, 2rem);
     margin-bottom: clamp(1rem, 3vh, 2rem);
     padding-left: clamp(2rem, 8vw, 3rem);
     padding-right: clamp(2rem, 8vw, 3rem);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: var(--shadow-text);
     width: 100%;
 }
 
 .memory-phrase p {
-    font-size: clamp(0.95rem, 3vw, 1.2rem);
+    font-size: var(--fs-body);
     font-style: italic;
     line-height: 1.5;
     margin: 0;
-    opacity: 0.85;
+    opacity: 1;
 }

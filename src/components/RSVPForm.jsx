@@ -104,8 +104,8 @@ const RSVPForm = () => {
               <input
                 type="radio"
                 name="attending"
-                value="yes"
-                checked={formData.attending === "yes"}
+                value="Oui"
+                checked={formData.attending === "Oui"}
                 onChange={handleChange}
                 required
               />
@@ -115,8 +115,8 @@ const RSVPForm = () => {
               <input
                 type="radio"
                 name="attending"
-                value="no"
-                checked={formData.attending === "no"}
+                value="Non"
+                checked={formData.attending === "Non"}
                 onChange={handleChange}
               />
               <span>Malheureusement non</span>
@@ -125,7 +125,7 @@ const RSVPForm = () => {
         </div>
 
         {/* Nombre de personnes (si présent) */}
-        {formData.attending === "yes" && (
+        {formData.attending === "Oui" && (
           <>
             <div className="form-group">
               <label htmlFor="adults">Nombre d'adultes *</label>
@@ -134,7 +134,7 @@ const RSVPForm = () => {
                 id="adults"
                 name="adults"
                 min="1"
-                max="10"
+                max="20"
                 value={formData.adults}
                 onChange={handleChange}
                 required
@@ -148,7 +148,7 @@ const RSVPForm = () => {
                 id="children"
                 name="children"
                 min="0"
-                max="10"
+                max="20"
                 value={formData.children}
                 onChange={handleChange}
               />

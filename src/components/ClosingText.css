@@ -1,18 +1,19 @@
 .closing-text {
-    color: #f5f5dc;
+    color: var(--color-beige);
     text-align: center;
+    font-family: var(--font-body);
     font-style: italic;
     width: 100%;
-    padding-left: clamp(1.5rem, 5vw, 2.5rem);
-    padding-right: clamp(1.5rem, 5vw, 2.5rem);
+    padding-left: var(--padding-section-x);
+    padding-right: var(--padding-section-x);
     margin-top: clamp(1rem, 2.5vw, 1.5rem);
     margin-bottom: clamp(1rem, 3vw, 1.5rem);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: var(--shadow-text);
 }
 
 .closing-text p {
     margin-top: clamp(0.1rem, 0.5vw, 0.2rem);
     margin-bottom: clamp(0.1rem, 0.5vw, 0.2rem);
-    font-size: clamp(1rem, 3.2vw, 1.2rem);
+    font-size: var(--fs-body);
     line-height: 1.5;
 }

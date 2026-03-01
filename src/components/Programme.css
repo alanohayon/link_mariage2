@@ -1,16 +1,17 @@
 .programme {
     text-align: center;
-    color: #f5f5dc;
+    color: var(--color-beige);
+    font-family: var(--font-body);
     margin-top: clamp(1rem, 3vh, 2rem);
     margin-bottom: clamp(1rem, 3vh, 2rem);
-    padding-left: clamp(1.5rem, 5vw, 2rem);
-    padding-right: clamp(1.5rem, 5vw, 2rem);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    padding-left: var(--padding-section-x);
+    padding-right: var(--padding-section-x);
+    text-shadow: var(--shadow-text);
     width: 100%;
 }
 
 .programme-title {
-    font-size: clamp(1.4rem, 4.2vw, 1.8rem);
+    font-size: var(--fs-title);
     font-weight: 600;
     margin: 0;
     margin-bottom: clamp(0.6rem, 2vh, 1rem);
@@ -24,7 +25,7 @@
 }
 
 .programme-item {
-    font-size: clamp(1.1rem, 3.2vw, 1.3rem);
+    font-size: var(--fs-small);
     display: flex;
     flex-direction: column;
     align-items: center;

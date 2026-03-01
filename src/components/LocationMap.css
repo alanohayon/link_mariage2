@@ -1,6 +1,6 @@
 .location-map {
     text-align: center;
-    color: #f5f5dc;
+    color: var(--color-beige);
     margin-top: clamp(1rem, 3vh, 2rem);
     margin-bottom: clamp(1.5rem, 3vh, 2rem);
     padding-left: clamp(1rem, 5vw, 2rem);
@@ -9,12 +9,12 @@
 }
 
 .map-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-body);
     font-size: clamp(1.3rem, 3.8vw, 1.6rem);
     font-weight: 600;
     margin: 0;
     margin-bottom: clamp(0.6rem, 2vh, 1rem);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: var(--shadow-text);
 }
 
 .map-buttons {
@@ -30,7 +30,7 @@
     padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem);
     border-radius: 2rem;
     text-decoration: none;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-body);
     font-size: clamp(1rem, 3vw, 1.2rem);
     font-weight: 600;
     transition: transform 0.2s, box-shadow 0.2s;

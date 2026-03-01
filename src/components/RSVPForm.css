@@ -11,13 +11,13 @@
 }
 
 .rsvp-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.6rem, 5vw, 2rem);
-    color: #f5f5dc;
+    font-family: var(--font-body);
+    font-size: var(--fs-large-title);
+    color: var(--color-beige);
     text-align: center;
     margin: 0;
     margin-bottom: clamp(1.5rem, 4vh, 2rem);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: var(--shadow-text);
 }
 
 .form-group {
@@ -26,9 +26,9 @@
 
 .form-group label {
     display: block;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-body);
     font-size: clamp(1rem, 3vw, 1.2rem);
-    color: #f5f5dc;
+    color: var(--color-beige);
     margin-bottom: 0.5rem;
 }
 
@@ -38,29 +38,29 @@
 .form-group textarea {
     width: 100%;
     padding: clamp(0.8rem, 2vw, 1rem);
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-body);
     font-size: clamp(1rem, 3vw, 1.1rem);
-    border: 1px solid rgba(245, 245, 220, 0.3);
+    border: 1px solid rgba(var(--color-beige-rgb), 0.3);
     border-radius: 0.5rem;
     background: rgba(255, 255, 255, 0.1);
-    color: #f5f5dc;
+    color: var(--color-beige);
     outline: none;
     transition: border-color 0.2s;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: rgba(245, 245, 220, 0.7);
+    border-color: rgba(var(--color-beige-rgb), 0.7);
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: rgba(245, 245, 220, 0.5);
+    color: rgba(var(--color-beige-rgb), 0.5);
 }
 
 .form-hint {
     font-size: clamp(0.8rem, 2.5vw, 0.9rem);
-    color: rgba(245, 245, 220, 0.6);
+    color: rgba(var(--color-beige-rgb), 0.6);
     margin-left: 0.5rem;
 }
 
@@ -75,31 +75,31 @@
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-body);
     font-size: clamp(1rem, 3vw, 1.1rem);
-    color: #f5f5dc;
+    color: var(--color-beige);
 }
 
 .radio-label input[type="radio"] {
     width: 1.2rem;
     height: 1.2rem;
-    accent-color: #f5f5dc;
+    accent-color: var(--color-beige);
 }
 
 .submit-button {
     width: 100%;
     padding: clamp(1rem, 3vw, 1.2rem);
     margin-top: clamp(1rem, 3vh, 1.5rem);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
     font-weight: 600;
     color: #2c2c2c;
-    background: linear-gradient(135deg, #f5f5dc, #e8e8c8);
+    background: linear-gradient(135deg, var(--color-beige), var(--color-beige-dark, #e8e8c8));
     border: none;
     border-radius: 2rem;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 15px rgba(245, 245, 220, 0.3);
+    box-shadow: 0 4px 15px rgba(var(--color-beige-rgb), 0.3);
 }
 
 .submit-button:disabled {
@@ -113,7 +113,7 @@
 
 .rsvp-error {
     color: #ff6b6b;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-body);
     font-size: clamp(0.9rem, 2.5vw, 1rem);
     text-align: center;
     margin: 0.5rem 0;
@@ -121,18 +121,18 @@
 
 .rsvp-success {
     text-align: center;
-    color: #f5f5dc;
+    color: var(--color-beige);
 }
 
 .rsvp-success h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-body);
     font-size: clamp(1.8rem, 5vw, 2.2rem);
     margin: 0;
     margin-bottom: 1rem;
 }
 
 .rsvp-success p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
     margin: 0;
 }

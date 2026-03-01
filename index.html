@@ -10,7 +10,14 @@
     <title>Mariage Hannah & Alan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Frank+Ruhl+Libre:wght@400;700&family=Playfair+Display:wght@400;500;600&family=Alex+Brush&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Preload enveloppe (premier ecran visible) -->
+    <link rel="preload" href="/images/enveloppe_haut.webp" as="image" type="image/webp">
+    <link rel="preload" href="/images/enveloppe_bas.webp" as="image" type="image/webp">
+    <!-- Prefetch fond (charge en idle, visible apres ouverture) -->
+    <link rel="prefetch" href="/images/fond_carte.webp" as="image" type="image/webp">
+    <link rel="preload" href="/fonts/Aniyah Free.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/fonts/edwardianscriptitc.ttf" as="font" type="font/ttf" crossorigin>
   </head>
   <body>
     <div id="root"></div>

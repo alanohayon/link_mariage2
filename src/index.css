@@ -1,15 +1,45 @@
+:root {
+  /* Colors */
+  --color-beige: #f5f5dc;
+  --color-cream: #fffdf2;
+  --color-beige-rgb: 245, 245, 220;
+  --color-beige-dark: #e8e8c8;
+  --color-text-shadow: rgba(0, 0, 0, 0.3);
+
+  /* Fonts */
+  --font-body: 'Cormorant Garamond', serif;
+  --font-hebrew: 'Cardo', serif;
+  --font-couple: 'Aniyah', cursive;
+  --font-family-names: 'Edwardian Script ITC', cursive;
+
+  /* Text shadows */
+  --shadow-text: 1px 1px 2px var(--color-text-shadow);
+  --shadow-text-strong: 2px 2px 4px var(--color-text-shadow);
+
+  /* Font sizes */
+  --fs-body: clamp(1.2rem, 3.84vw, 1.44rem);
+  --fs-small: clamp(1.1rem, 3.2vw, 1.3rem);
+  --fs-title: clamp(1.4rem, 4.2vw, 1.8rem);
+  --fs-large-title: clamp(1.6rem, 5vw, 2rem);
+
+  /* Spacing */
+  --padding-section-x: clamp(1.5rem, 5vw, 2.5rem);
+}
+
 @font-face {
   font-family: 'Aniyah';
-  src: url('./assets/fonts/Aniyah Free.ttf') format('truetype');
+  src: url('/fonts/Aniyah Free.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Edwardian Script ITC';
-  src: url('./assets/fonts/edwardianscriptitc.ttf') format('truetype');
+  src: url('/fonts/edwardianscriptitc.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 * {
@@ -34,4 +64,17 @@ body {
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
+}
+
+/* Fond fixe plein ecran partage entre Envelope et Card */
+.app-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: -1;
 }

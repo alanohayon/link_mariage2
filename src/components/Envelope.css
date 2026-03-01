@@ -1,0 +1,150 @@
+/* -------------------------------------------------------------
+ * ATTENTION - GUIDE DES MODIFICATIONS
+ * 🟢 [MODIFIABLE] : Vous pouvez changer ces valeurs (couleurs, tailles de texte, temps d'animation).
+ * 🔴 [NE PAS TOUCHER] : Propriétés structurelles. Les modifier casse l'enveloppe ou l'animation.
+ * ------------------------------------------------------------- */
+
+.envelope-container {
+    position: relative;
+    /* 🔴 [NE PAS TOUCHER] Garde le contenu à l'intérieur du conteneur */
+    width: 100%;
+    /* 🔴 [NE PAS TOUCHER] Fixe la largeur à 100% de l'écran */
+    height: 100vh;
+    /* 🟢 [MODIFIABLE] Hauteur de l'écran (fallback pour vieux navigateurs) */
+    height: 100dvh;
+    /* 🟢 [MODIFIABLE] Hauteur dynamique de l'écran (idéal sur mobile) */
+    display: flex;
+    /* 🔴 [NE PAS TOUCHER] Active le centrage Flexbox */
+    justify-content: center;
+    /* 🔴 [NE PAS TOUCHER] Centre horizontalement l'enveloppe */
+    align-items: center;
+    /* 🔴 [NE PAS TOUCHER] Centre verticalement l'enveloppe */
+    overflow: hidden;
+    /* 🔴 [NE PAS TOUCHER] Empêche le scroll si l'image dépasse */
+    cursor: pointer;
+    /* 🟢 [MODIFIABLE] Affiche la main au survol de la souris */
+}
+
+.envelope {
+    position: relative;
+    /* 🔴 [NE PAS TOUCHER] Nécessaire pour placer les éléments absolus à l'intérieur */
+    width: 100%;
+    /* 🔴 [NE PAS TOUCHER] Largeur maximum calculée par rapport au container */
+    height: 100dvh;
+    /* 🟢 [MODIFIABLE] Hauteur de l'enveloppe */
+    perspective: 1000px;
+    /* 🟢 [MODIFIABLE] Profondeur de l'effet 3D. Plus grand = effet plus plat. Plus petit = effet extrême. (800 à 1200px conseillé) */
+    display: grid;
+    /* 🔴 [NE PAS TOUCHER] Permet de superposer les images l'une sur l'autre facilement */
+    place-items: center;
+    /* 🔴 [NE PAS TOUCHER] Centre tout le contenu de la grille */
+}
+
+/* Le rabat (haut) -- superpose sur le bas via grid-area */
+.envelope__flap {
+    grid-area: 1 / 1;
+    /* 🔴 [NE PAS TOUCHER] Place l'image dans la même case de grille que le bas */
+    width: 100%;
+    /* 🔴 [NE PAS TOUCHER] L'image prend 100% de la largeur dispo */
+    height: 100%;
+    /* 🔴 [NE PAS TOUCHER] L'image prend 100% de la hauteur dispo */
+    object-fit: cover;
+    /* 🔴 [NE PAS TOUCHER] L'image couvre l'espace sans se déformer */
+    object-position: bottom;
+    /* 🔴 [NE PAS TOUCHER] Aligne l'image en bas pour être raccord avec l'enveloppe du fond */
+    display: block;
+    /* 🔴 [NE PAS TOUCHER] Évite des espaces fantômes habituels sur les images inline */
+    transform-origin: top center;
+    /* 🔴 [NE PAS TOUCHER] Point de pivot de l'animation (le rabat tourne depuis le haut) */
+
+    /* 🟢 [MODIFIABLE] Temps d'ouverture. (0.9s = 900ms). Si changé, adapter le JS dans Envelope.jsx */
+    transition: transform 1.8s ease-in-out, filter 1.8s ease-in-out;
+
+    z-index: 2;
+    /* 🔴 [NE PAS TOUCHER] Assure que le haut est par-dessus le bas */
+
+    /* 🟢 [MODIFIABLE] Ombre sous le rabat/sceau. (X Y Flou Couleur) */
+    filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.4));
+}
+
+/* Ouverture : le bas du rabat se souleve legerement, le haut reste fixe */
+.envelope--opening .envelope__flap,
+.envelope--revealing .envelope__flap {
+    /* 🟢 [MODIFIABLE] Angle de rotation à l'ouverture (15degsoulève légèrement pour laisser passer la lettre) */
+    transform: rotateX(25deg);
+
+    /* 🟢 [MODIFIABLE] Ombre quand l'enveloppe est ouverte (souvent plus faible car l'image pivote) */
+    filter: drop-shadow(0 -7px 9px rgba(0, 0, 0, 0.1));
+}
+
+/* Le bas de l'enveloppe -- meme cellule grid que le rabat */
+.envelope__bottom {
+    grid-area: 1 / 1;
+    /* 🔴 [NE PAS TOUCHER] Place cette image sous le rabat (même case de grille) */
+    width: 100%;
+    /* 🔴 [NE PAS TOUCHER] L'image prend toute la largeur */
+    height: 100%;
+    /* 🔴 [NE PAS TOUCHER] L'image prend toute la hauteur */
+    object-fit: cover;
+    /* 🔴 [NE PAS TOUCHER] L'image remplit l'espace sans déformation */
+    display: block;
+    /* 🔴 [NE PAS TOUCHER] Structure standard pour une image conteneur */
+    z-index: 1;
+    /* 🔴 [NE PAS TOUCHER] Assure que le bas est en-dessous du rabat (z-index 2) */
+}
+
+/* Indication de tap ("Appuyez pour ouvrir") */
+.envelope__hint {
+    position: absolute;
+    /* 🔴 [NE PAS TOUCHER] Permet de placer le texte indépendamment de l'enveloppe */
+    bottom: 10%;
+    /* 🟢 [MODIFIABLE] Position du texte. Plus le % est petit, plus c'est bas. */
+    left: 0;
+    /* 🔴 [NE PAS TOUCHER] Accroche la boite à gauche pour permettre le centrage */
+    right: 0;
+    /* 🔴 [NE PAS TOUCHER] Accroche la boite à droite pour permettre le centrage */
+    text-align: center;
+    /* 🔴 [NE PAS TOUCHER] Centre le texte */
+
+    font-family: var(--font-body);
+    /* 🟢 [MODIFIABLE] Police du texte (référencée depuis variables css globales) */
+    font-size: var(--fs-small);
+    /* 🟢 [MODIFIABLE] Taille du texte */
+    color: #7c7257;
+    /* 🟢 [MODIFIABLE] Couleur du texte */
+    text-shadow: var(--shadow-text);
+    /* 🟢 [MODIFIABLE] Ombre du texte pour lisibilité sur fond blanc */
+
+    opacity: 0.8;
+    /* 🟢 [MODIFIABLE] Transparence initiale du texte (0 = invisible, 1 = plein) */
+    animation: pulse 2s ease-in-out infinite;
+    /* 🟢 [MODIFIABLE] Appelle l'animation 'pulse' définie plus bas (2s = durée de la boucle) */
+    z-index: 3;
+    /* 🔴 [NE PAS TOUCHER] S'assure que le texte est toujours au-dessus de tout */
+    pointer-events: none;
+    /* 🔴 [NE PAS TOUCHER] Empêche le clic sur le texte de bloquer le clic sur l'enveloppe en dessous */
+}
+
+/* 🟢 [MODIFIABLE] Définition de l'animation de clignotement du texte "Appuyez..." */
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        /* 🟢 [MODIFIABLE] Transparence au début et à la fin du cycle */
+    }
+
+    50% {
+        opacity: 1;
+        /* 🟢 [MODIFIABLE] Pleine opacité au milieu du cycle (effet clignotant doux) */
+    }
+}
+
+/* Quand l'enveloppe s'ouvre, masquer l'indice */
+.envelope--opening .envelope__hint,
+.envelope--revealing .envelope__hint {
+    opacity: 0;
+    /* 🔴 [NE PAS TOUCHER] Rend le texte invisible lors du survol/clic */
+    transition: opacity 0.3s;
+    /* 🟢 [MODIFIABLE] Vitesse de disparition du texte (0.3s) */
+}
