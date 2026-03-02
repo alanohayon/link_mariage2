@@ -1,5 +1,43 @@
 import React, { useState } from "react";
+import {
+  User,
+  Heart,
+  CircleCheck,
+  CircleX,
+  Users,
+  Baby,
+  Mail,
+  MessageSquare,
+  Send,
+} from "lucide-react";
 import "./RSVPForm.css";
+
+const LiquidGlassFilter = () => (
+  <svg
+    style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
+    aria-hidden="true"
+  >
+    <defs>
+      <filter id="liquid-glass" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.012 0.01"
+          numOctaves="3"
+          seed="42"
+          stitchTiles="stitch"
+          result="noise"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="noise"
+          scale="20"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
+      </filter>
+    </defs>
+  </svg>
+);
 
 const defaultT = {
   title: "Confirmez votre présence",
@@ -39,7 +77,11 @@ const RSVPForm = ({ lang = "fr", t = defaultT }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+      ...(name === "attending" && value === "Non" ? { email: "" } : {}),
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -78,141 +120,201 @@ const RSVPForm = ({ lang = "fr", t = defaultT }) => {
     }
   };
 
-  if (submitted) {
-    return (
-      <div className={`rsvp-form ${lang === "he" ? "rtl" : ""}`}>
-        <div className="rsvp-success">
-          <h3>{t.successTitle}</h3>
-          <p>{t.successMessage}</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className={`rsvp-form ${lang === "he" ? "rtl" : ""}`}>
-      <h3 className="rsvp-title">{t.title}</h3>
-      <form onSubmit={handleSubmit}>
-        {/* Honeypot anti-spam */}
-        <input
-          type="text"
-          name="website"
-          value={honeypot}
-          onChange={(e) => setHoneypot(e.target.value)}
-          style={{ position: "absolute", left: "-9999px", opacity: 0 }}
-          tabIndex={-1}
-          autoComplete="off"
-        />
-        {/* Nom Prénom */}
-        <div className="form-group">
-          <label htmlFor="fullName">{t.fullName}</label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-            placeholder={t.fullNamePlaceholder}
-          />
-        </div>
-
-        {/* Présence */}
-        <div className="form-group">
-          <label>{t.attending}</label>
-          <div className="radio-group">
-            <label className="radio-label">
-              <input
-                type="radio"
-                name="attending"
-                value="Oui"
-                checked={formData.attending === "Oui"}
-                onChange={handleChange}
-                required
-              />
-              <span>{t.yes}</span>
-            </label>
-            <label className="radio-label">
-              <input
-                type="radio"
-                name="attending"
-                value="Non"
-                checked={formData.attending === "Non"}
-                onChange={handleChange}
-              />
-              <span>{t.no}</span>
-            </label>
+      <LiquidGlassFilter />
+      <div className="glass-refraction-layer" aria-hidden="true" />
+      <div className="glass-content">
+        {submitted ? (
+          <div className="rsvp-success">
+            <h3>{t.successTitle}</h3>
+            <p>{t.successMessage}</p>
           </div>
-        </div>
-
-        {/* Nombre de personnes (si présent) */}
-        {formData.attending === "Oui" && (
+        ) : (
           <>
-            <div className="form-group">
-              <label htmlFor="adults">{t.adults}</label>
+            <h3 className="rsvp-title">{t.title}</h3>
+            <form onSubmit={handleSubmit}>
+              {/* Honeypot anti-spam */}
               <input
-                type="number"
-                id="adults"
-                name="adults"
-                min="1"
-                max="20"
-                value={formData.adults}
-                onChange={handleChange}
-                required
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+                tabIndex={-1}
+                autoComplete="off"
               />
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="children">{t.children}</label>
-              <input
-                type="number"
-                id="children"
-                name="children"
-                min="0"
-                max="20"
-                value={formData.children}
-                onChange={handleChange}
-              />
-              <span className="form-hint">{t.optional}</span>
-            </div>
+              {/* Nom Prénom */}
+              <div className="form-group">
+                <label htmlFor="fullName">
+                  <User size={16} strokeWidth={1.8} className="field-icon" />
+                  {t.fullName}
+                </label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+                  placeholder={t.fullNamePlaceholder}
+                />
+              </div>
+
+              {/* Présence */}
+              <div className="form-group">
+                <label>
+                  <Heart size={16} strokeWidth={1.8} className="field-icon" />
+                  {t.attending}
+                </label>
+                <div className="radio-group">
+                  <label
+                    className={`radio-label ${formData.attending === "Oui" ? "selected" : ""}`}
+                  >
+                    <input
+                      type="radio"
+                      name="attending"
+                      value="Oui"
+                      checked={formData.attending === "Oui"}
+                      onChange={handleChange}
+                      required
+                    />
+                    <span className="radio-custom">
+                      <CircleCheck size={18} strokeWidth={2} />
+                    </span>
+                    <span className="radio-text">{t.yes}</span>
+                  </label>
+                  <label
+                    className={`radio-label ${formData.attending === "Non" ? "selected" : ""}`}
+                  >
+                    <input
+                      type="radio"
+                      name="attending"
+                      value="Non"
+                      checked={formData.attending === "Non"}
+                      onChange={handleChange}
+                    />
+                    <span className="radio-custom">
+                      <CircleX size={18} strokeWidth={2} />
+                    </span>
+                    <span className="radio-text">{t.no}</span>
+                  </label>
+                </div>
+              </div>
+
+              {/* Nombre de personnes (si présent) */}
+              {formData.attending === "Oui" && (
+                <>
+                  <div className="form-group">
+                    <label htmlFor="adults">
+                      <Users
+                        size={16}
+                        strokeWidth={1.8}
+                        className="field-icon"
+                      />
+                      {t.adults}
+                    </label>
+                    <input
+                      type="number"
+                      id="adults"
+                      name="adults"
+                      min="1"
+                      max="20"
+                      value={formData.adults}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="children">
+                      <Baby
+                        size={16}
+                        strokeWidth={1.8}
+                        className="field-icon"
+                      />
+                      {t.children}
+                    </label>
+                    <input
+                      type="number"
+                      id="children"
+                      name="children"
+                      min="0"
+                      max="20"
+                      value={formData.children}
+                      onChange={handleChange}
+                    />
+                    <span className="form-hint">{t.optional}</span>
+                  </div>
+                </>
+              )}
+
+              {/* Email - seulement si pas "Non" */}
+              {formData.attending !== "Non" && (
+                <div className="form-group">
+                  <label htmlFor="email">
+                    <Mail
+                      size={16}
+                      strokeWidth={1.8}
+                      className="field-icon"
+                    />
+                    {t.email}
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder={t.emailPlaceholder}
+                  />
+                </div>
+              )}
+
+              {/* Message */}
+              <div className="form-group">
+                <label htmlFor="message">
+                  <MessageSquare
+                    size={16}
+                    strokeWidth={1.8}
+                    className="field-icon"
+                  />
+                  {t.message}
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder={t.messagePlaceholder}
+                  rows="3"
+                />
+              </div>
+
+              {/* Erreur */}
+              {error && <p className="rsvp-error">{t.error}</p>}
+
+              {/* Bouton */}
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={loading}
+              >
+                {loading ? (
+                  t.submitting
+                ) : (
+                  <>
+                    <Send size={16} strokeWidth={2} />
+                    {t.submit}
+                  </>
+                )}
+              </button>
+            </form>
           </>
         )}
-
-        {/* Email */}
-        <div className="form-group">
-          <label htmlFor="email">{t.email}</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            placeholder={t.emailPlaceholder}
-          />
-        </div>
-
-        {/* Message */}
-        <div className="form-group">
-          <label htmlFor="message">{t.message}</label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder={t.messagePlaceholder}
-            rows="3"
-          />
-        </div>
-
-        {/* Erreur */}
-        {error && <p className="rsvp-error">{t.error}</p>}
-
-        {/* Bouton */}
-        <button type="submit" className="submit-button" disabled={loading}>
-          {loading ? t.submitting : t.submit}
-        </button>
-      </form>
+      </div>
     </div>
   );
 };

@@ -7,21 +7,259 @@
     margin-right: clamp(0.8rem, 3vw, 1.5rem);
     width: calc(100% - clamp(1.6rem, 6vw, 3rem));
 
-    /* Liquid glass effect - comme Waze avec +20% blur */
     background: transparent;
-    backdrop-filter: blur(29px) saturate(200%);
-    -webkit-backdrop-filter: blur(29px) saturate(200%);
     border-radius: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.15),
-        0 2px 8px rgba(0, 0, 0, 0.1),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        0 4px 24px rgba(0, 0, 0, 0.1),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
     overflow: hidden;
 }
 
-/* Reflet lumineux en haut - comme Waze */
+/* Liquid glass refraction layer — plus transparent */
+.glass-refraction-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    background:
+        linear-gradient(rgba(45, 40, 28, 0.10), rgba(45, 40, 28, 0.10)),
+        url('/images/fond_carte.webp') center top / cover fixed;
+    filter: url(#liquid-glass) blur(18px) saturate(1.15) brightness(0.95);
+    -webkit-filter: url(#liquid-glass) blur(18px) saturate(1.15) brightness(0.95);
+    pointer-events: none;
+}
+
+/* Highlight lumineux bord superieur */
+.glass-refraction-layer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent);
+    border-radius: 50%;
+}
+
+/* Contenu au-dessus de la refraction */
+.glass-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Reflet speculaire en haut */
 .rsvp-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    z-index: 1;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            transparent 100%);
+    pointer-events: none;
+    border-radius: 1.5rem 1.5rem 0 0;
+}
+
+/* Reflet radial overlay */
+.rsvp-form::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse at 30% 20%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    border-radius: 1.5rem;
+}
+
+/* ========== Titre ========== */
+
+.rsvp-title {
+    font-family: var(--font-body);
+    font-size: var(--fs-large-title);
+    color: var(--color-beige);
+    text-align: center;
+    margin: 0;
+    margin-bottom: clamp(1.8rem, 4.5vh, 2.5rem);
+    text-shadow: var(--shadow-text);
+    letter-spacing: 0.02em;
+}
+
+/* ========== Champs ========== */
+
+.form-group {
+    margin-bottom: clamp(1.2rem, 3.5vh, 1.8rem);
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+    color: rgba(var(--color-beige-rgb), 0.85);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.01em;
+}
+
+/* Icones Lucide dans les labels */
+.field-icon {
+    display: inline-block;
+    vertical-align: -0.15em;
+    margin-right: 0.4rem;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: 100%;
+    padding: clamp(0.8rem, 2vw, 1rem);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: var(--color-beige);
+    outline: none;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.06),
+        0 0 0 2px rgba(255, 255, 255, 0.04);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(var(--color-beige-rgb), 0.45);
+}
+
+.form-hint {
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+    color: rgba(var(--color-beige-rgb), 0.5);
+    margin-left: 0.5rem;
+}
+
+/* ========== Radio buttons custom ========== */
+
+.radio-group {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Cacher l'input natif */
+.radio-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+/* Label = carte glass cliquable */
+.radio-label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: clamp(0.9rem, 2.8vw, 1rem);
+    color: rgba(var(--color-beige-rgb), 0.65);
+    padding: clamp(0.7rem, 2vw, 0.9rem) clamp(1rem, 3vw, 1.2rem);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: all 0.3s ease;
+}
+
+.radio-label:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.radio-label.selected {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-beige);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.radio-custom {
+    display: flex;
+    align-items: center;
+    opacity: 0.4;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.radio-label.selected .radio-custom {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.radio-text {
+    white-space: nowrap;
+}
+
+/* ========== Bouton submit — style Waze transparent ========== */
+
+.submit-button {
+    position: relative;
+    width: 100%;
+    padding: clamp(0.9rem, 2.5vw, 1.1rem);
+    margin-top: clamp(1rem, 3vh, 1.5rem);
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--color-cream);
+    letter-spacing: 0.02em;
+
+    /* Glass givré neutre — blanc subtil pour casser la chaleur du fond */
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(30px) saturate(100%) brightness(1.1);
+    -webkit-backdrop-filter: blur(30px) saturate(100%) brightness(1.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Reflet lumineux en haut — identique Waze */
+.submit-button::before {
     content: '';
     position: absolute;
     top: 0;
@@ -33,11 +271,11 @@
             rgba(255, 255, 255, 0.05) 50%,
             transparent 100%);
     pointer-events: none;
-    border-radius: 1.5rem 1.5rem 0 0;
+    border-radius: 2rem 2rem 0 0;
 }
 
-/* Effet de réfraction - comme Waze */
-.rsvp-form::after {
+/* Reflet radial — comme Waze::after */
+.submit-button::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -46,128 +284,20 @@
             transparent 50%);
     mix-blend-mode: overlay;
     pointer-events: none;
-    border-radius: 1.5rem;
-}
-
-.rsvp-title {
-    font-family: var(--font-body);
-    font-size: var(--fs-large-title);
-    color: var(--color-beige);
-    text-align: center;
-    margin: 0;
-    margin-bottom: clamp(1.5rem, 4vh, 2rem);
-    text-shadow: var(--shadow-text);
-}
-
-.form-group {
-    margin-bottom: clamp(1rem, 3vh, 1.5rem);
-}
-
-.form-group label {
-    display: block;
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    color: var(--color-beige);
-    margin-bottom: 0.5rem;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="number"],
-.form-group textarea {
-    width: 100%;
-    padding: clamp(0.8rem, 2vw, 1rem);
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 3vw, 1.1rem);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 0.75rem;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: var(--color-beige);
-    outline: none;
-    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: rgba(255, 255, 255, 0.35);
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow:
-        inset 0 1px 2px rgba(0, 0, 0, 0.1),
-        0 0 0 3px rgba(255, 255, 255, 0.05);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(var(--color-beige-rgb), 0.5);
-}
-
-.form-hint {
-    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
-    color: rgba(var(--color-beige-rgb), 0.6);
-    margin-left: 0.5rem;
-}
-
-.radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.radio-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 3vw, 1.1rem);
-    color: var(--color-beige);
-}
-
-.radio-label input[type="radio"] {
-    width: 1.2rem;
-    height: 1.2rem;
-    accent-color: var(--color-beige);
-}
-
-.submit-button {
-    position: relative;
-    width: 100%;
-    padding: clamp(1rem, 3vw, 1.2rem);
-    margin-top: clamp(1rem, 3vh, 1.5rem);
-    font-family: var(--font-body);
-    font-size: var(--fs-small);
-    font-weight: 600;
-    color: var(--color-cream);
-    background: transparent;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 2rem;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    box-shadow:
-        0 8px 24px rgba(0, 0, 0, 0.15),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
 }
 
-/* Reflet sur le bouton */
-.submit-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(180deg,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(255, 255, 255, 0.05) 100%);
-    pointer-events: none;
-    border-radius: 2rem 2rem 0 0;
+.submit-button:hover:not(:disabled) {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.18),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.submit-button:active:not(:disabled) {
+    transform: scale(0.98);
+    backdrop-filter: blur(20px) saturate(110%);
+    -webkit-backdrop-filter: blur(20px) saturate(110%);
 }
 
 .submit-button:disabled {
@@ -175,12 +305,7 @@
     cursor: not-allowed;
 }
 
-.submit-button:active:not(:disabled) {
-    transform: scale(0.98);
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.15),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-}
+/* ========== Etats ========== */
 
 .rsvp-error {
     color: #ff6b6b;
@@ -208,7 +333,8 @@
     margin: 0;
 }
 
-/* RTL support */
+/* ========== RTL support ========== */
+
 .rsvp-form.rtl {
     direction: rtl;
     text-align: right;
@@ -217,4 +343,33 @@
 .rsvp-form.rtl .form-hint {
     margin-left: 0;
     margin-right: 0.5rem;
+}
+
+.rsvp-form.rtl .field-icon {
+    margin-right: 0;
+    margin-left: 0.4rem;
+}
+
+/* ========== Fallbacks ========== */
+
+/* Fallback mobile: background-attachment:fixed ne fonctionne pas sur iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    .glass-refraction-layer {
+        background: none;
+        filter: none;
+        -webkit-filter: none;
+        backdrop-filter: blur(24px) saturate(200%);
+        -webkit-backdrop-filter: blur(24px) saturate(200%);
+    }
+}
+
+/* Fallback ultime: navigateurs sans backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+    .rsvp-form {
+        background: rgba(45, 40, 28, 0.65);
+    }
+
+    .glass-refraction-layer {
+        display: none;
+    }
 }

@@ -210,7 +210,7 @@
 /* Houppa info */
 .houppa-info {
     font-family: var(--font-body);
-    font-size: clamp(1.3rem, 4.2vw, 1.56rem);
+    font-size: clamp(1.1rem, 3.57vw, 1.33rem);
     font-style: italic;
     color: var(--color-beige);
     text-align: center;
