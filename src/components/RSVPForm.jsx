@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   User,
   Heart,
@@ -115,8 +115,7 @@ const RSVPForm = ({ lang = "fr", t = defaultT }) => {
 
       setSubmitted(true);
     } catch (err) {
-      setError("Une erreur est survenue. Veuillez réessayer.");
-      console.error("RSVP submit error:", err);
+      setError(t.error);
     } finally {
       setLoading(false);
     }
@@ -252,8 +251,8 @@ const RSVPForm = ({ lang = "fr", t = defaultT }) => {
                 </>
               )}
 
-              {/* Email - seulement si pas "Non" */}
-              {formData.attending !== "Non" && (
+              {/* Email - seulement si "Oui" */}
+              {formData.attending === "Oui" && (
                 <div className="form-group">
                   <label htmlFor="email">
                     <Mail

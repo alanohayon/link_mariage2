@@ -164,7 +164,7 @@
     },
     {
       "parameters": {
-        "content": "## Mariage Hannah & Alan - RSVP Workflow\n\n### Configuration requise :\n1. **Google Sheets** : Ajouter credentials + configurer le Document ID et le Sheet\n2. **Notion** : Ajouter credentials + configurer le Database ID\n3. **Activer** le workflow pour que le webhook soit accessible\n\n### Colonnes Google Sheets attendues :\n`Nom Complet` | `Present` | `Adultes` | `Enfants` | `Email` | `Message` | `Date Soumission`\n\n### Proprietes Notion attendues :\n- Nom Complet (Title)\n- Present (Text)\n- Adultes (Number)\n- Enfants (Number)\n- Email (Email)\n- Message (Text)\n\n### URL Webhook (apres activation) :\n`https://alan-ohayon.app.n8n.cloud/webhook/rsvp-mariage`",
+        "content": "## Mariage Hannah & Alan - RSVP Workflow\n\n### Configuration requise :\n1. **Google Sheets** : Ajouter credentials + configurer le Document ID et le Sheet\n2. **Notion** : Ajouter credentials + configurer le Database ID\n3. **Activer** le workflow pour que le webhook soit accessible\n\n### Colonnes Google Sheets attendues :\n`Nom Complet` | `Present` | `Adultes` | `Enfants` | `Email` | `Message` | `Date Soumission`\n\n### Proprietes Notion attendues :\n- Nom Complet (Title)\n- Present (Text)\n- Adultes (Number)\n- Enfants (Number)\n- Email (Email)\n- Message (Text)\n\n### URL Webhook (apres activation) :\n`https://VOTRE-INSTANCE.app.n8n.cloud/webhook/rsvp-mariage`",
         "width": 450,
         "height": 500
       },
