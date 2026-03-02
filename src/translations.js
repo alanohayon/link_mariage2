@@ -52,7 +52,7 @@ export const translations = {
     familyNames: {
       leftFamily: ["דניאל ויולה קלנגוויקס", "אלכסנדרה כהן"],
       rightFamily: ["קלארה אוחיון", "אנדריי ורנה אוחיון"],
-      memorial: "יואל יעקב כהן ז״ל,\n שחסר לנו מאוד ביום המיוחד הזה",
+      memorial: "יואל יעקב  ז״ל,\n שחסר לנו מאוד ביום המיוחד הזה",
       dressCode: "לבוש צנוע יהלום את האירוע",
     },
     announcement: [
