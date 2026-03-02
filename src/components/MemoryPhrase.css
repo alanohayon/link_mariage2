@@ -2,7 +2,7 @@
     text-align: center;
     color: var(--color-beige);
     font-family: var(--font-body);
-    margin-top: clamp(1rem, 3vh, 2rem);
+    margin-top: clamp(1.2rem, 3.6vh, 2.4rem);
     margin-bottom: clamp(0.8rem, 2vh, 1.2rem);
     padding-left: clamp(2rem, 8vw, 3rem);
     padding-right: clamp(2rem, 8vw, 3rem);

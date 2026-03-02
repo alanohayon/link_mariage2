@@ -52,7 +52,7 @@ export const translations = {
     familyNames: {
       leftFamily: ["דניאל ויולה קלנגוויקס", "אלכסנדרה כהן"],
       rightFamily: ["קלארה אוחיון", "אנדריי ורנה אוחיון"],
-      memorial: "יואל יעקב ז״ל, שחסר לנו מאוד ביום המיוחד הזה",
+      memorial: "יואל יעקב כהן ז״ל,\n שחסר לנו מאוד ביום המיוחד הזה",
       dressCode: "לבוש צנוע יהלום את האירוע",
     },
     announcement: [
@@ -63,7 +63,7 @@ export const translations = {
       "שתיערך ביום",
       "יום שני כ״ד אייר תשפ״ו",
     ],
-    houppa: "החופה תחל 30 דק לפני השקיע\nהקבלת פנים תתקיים מיד אחרי טקס החופה \n",
+    houppa: "החופה תחל 30 דק לפני השקיעה\nהקבלת פנים תתקיים מיד אחרי טקס החופה \n",
     date: "11/05/26",
     reception: "",
     location: {
@@ -80,9 +80,9 @@ export const translations = {
       title: "אישור הגעה",
       fullName: "שם מלא *",
       fullNamePlaceholder: "השם המלא שלך",
-      attending: "האם תגיעו? *",
+      attending: "האם תגיע? *",
       yes: "כן, בשמחה!",
-      no: "לצערנו לא",
+      no: "לצערי לא",
       adults: "מספר מבוגרים *",
       children: "מספר ילדים (עד גיל 6)",
       optional: "אופציונלי",

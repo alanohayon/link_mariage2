@@ -7,7 +7,7 @@
     padding-left: var(--padding-section-x);
     padding-right: var(--padding-section-x);
     margin-top: clamp(1.4rem, 5vw, 2.4rem);
-    margin-bottom: clamp(2rem, 6vw, 3rem);
+    margin-bottom: clamp(2.4rem, 7.2vw, 3.6rem);
     text-shadow: 1px 1px 2px var(--color-text-shadow), 0 0 8px rgba(59, 53, 36, 0.3);
 }
 
