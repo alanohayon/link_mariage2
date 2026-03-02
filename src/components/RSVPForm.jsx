@@ -98,7 +98,9 @@ const RSVPForm = ({ lang = "fr", t = defaultT }) => {
 
       const response = await fetch(webhookUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        // "text/plain" évite la preflight OPTIONS → contourne le CORS n8n
+        // n8n reçoit et parse le JSON correctement dans les deux cas
+        headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
           ...formData,
           adults: Number(formData.adults) || 1,
