@@ -53,9 +53,10 @@
 
 .map-button.waze {
     position: relative;
-    background: transparent;
-    backdrop-filter: blur(24px) saturate(200%);
-    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    /* Fond semi-transparent visible sur tous navigateurs (fallback iOS) */
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(30px) saturate(100%) brightness(1.1);
+    -webkit-backdrop-filter: blur(30px) saturate(100%) brightness(1.1);
     color: var(--color-cream);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow:
@@ -63,6 +64,9 @@
         inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    /* iOS Safari: neutralise l'apparence native */
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 /* Reflet lumineux en haut */
@@ -100,4 +104,13 @@
 .waze-icon {
     width: 1.5rem;
     height: 1.5rem;
+}
+
+/* iOS Safari: backdrop-filter seul ne suffit pas sans background solide */
+@supports (-webkit-touch-callout: none) {
+    .map-button.waze {
+        background: rgba(45, 40, 28, 0.55);
+        backdrop-filter: blur(24px) saturate(160%) brightness(0.95);
+        -webkit-backdrop-filter: blur(24px) saturate(160%) brightness(0.95);
+    }
 }
