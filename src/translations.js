@@ -67,7 +67,7 @@ export const translations = {
     date: "11/05/26",
     reception: "",
     location: {
-      venuePrefix: "אולמ",
+      venuePrefix: " אולם",
       venueName: "'קדמא'",
       address: "נווה אילן",
     },

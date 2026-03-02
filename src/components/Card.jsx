@@ -21,6 +21,7 @@ const Card = () => {
   return (
     <div className={`card ${lang === "he" ? "rtl" : ""}`}>
       <LanguageToggle lang={lang} setLang={setLang} />
+      <span className="bsd-fixed">בס״ד</span>
       <MusicPlayer />
       <HebrewTitle text={t.hebrewTitle} />
       <FamilyNames
