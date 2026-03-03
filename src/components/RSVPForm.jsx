@@ -102,10 +102,12 @@ const RSVPForm = ({ lang = "fr", t = defaultT }) => {
         // n8n reçoit et parse le JSON correctement dans les deux cas
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
-          ...formData,
-          adults: Number(formData.adults) || 1,
-          children: Number(formData.children) || 0,
-          submittedAt: new Date().toISOString(),
+          fullName: formData.fullName,
+          attending: formData.attending,
+          message: formData.message ? formData.message : "",
+          adults: formData.attending === "Oui" ? (Number(formData.adults) || 0) : 0,
+          children: formData.attending === "Oui" ? (Number(formData.children) || 0) : 0,
+          email: formData.attending === "Oui" ? formData.email : "",
         }),
       });
 
