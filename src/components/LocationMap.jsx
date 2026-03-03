@@ -3,8 +3,7 @@ import "./LocationMap.css";
 
 const LocationMap = ({
   // Coordonnées de KEDMA Neve Ilan
-  wazeUrl = "https://waze.com/ul?ll=31.8097,35.0722&navigate=yes",
-  googleMapsUrl = "https://maps.google.com/?q=31.8097,35.0722",
+  wazeUrl = "https://waze.com/ul/hsv8uynsuv",
   lang = "fr",
 }) => {
   const wazeText = lang === "he" ? "פתח ב-Waze" : "Ouvrir dans Waze";
