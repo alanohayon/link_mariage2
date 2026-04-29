@@ -91,16 +91,9 @@ const RSVPForm = ({ lang = "fr", t = defaultT }) => {
     setError("");
 
     try {
-      const webhookUrl = import.meta.env.VITE_WEBHOOK_URL;
-      if (!webhookUrl) {
-        throw new Error("Webhook URL non configuree");
-      }
-
-      const response = await fetch(webhookUrl, {
+      const response = await fetch("/api/rsvp", {
         method: "POST",
-        // "text/plain" évite la preflight OPTIONS → contourne le CORS n8n
-        // n8n reçoit et parse le JSON correctement dans les deux cas
-        headers: { "Content-Type": "text/plain" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           fullName: formData.fullName,
           attending: formData.attending,
@@ -108,6 +101,7 @@ const RSVPForm = ({ lang = "fr", t = defaultT }) => {
           adults: formData.attending === "Oui" ? (Number(formData.adults) || 0) : 0,
           children: formData.attending === "Oui" ? (Number(formData.children) || 0) : 0,
           email: formData.attending === "Oui" ? formData.email : "",
+          website: honeypot,
         }),
       });
 
