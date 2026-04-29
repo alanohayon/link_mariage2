@@ -33,6 +33,16 @@ let notionClient = null;
 const normalizePrivateKey = (raw) => {
   if (!raw) return raw;
   let key = raw.trim();
+  // Cas où l'utilisateur a collé le fichier JSON entier du service account :
+  // on extrait juste le champ private_key
+  if (key.startsWith("{")) {
+    try {
+      const parsed = JSON.parse(key);
+      if (parsed.private_key) return parsed.private_key;
+    } catch {
+      // pas un JSON valide, on continue avec les autres normalisations
+    }
+  }
   // Retirer guillemets si la valeur a été collée avec ses doubles-quotes du JSON
   if ((key.startsWith('"') && key.endsWith('"')) || (key.startsWith("'") && key.endsWith("'"))) {
     key = key.slice(1, -1);
