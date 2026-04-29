@@ -30,10 +30,26 @@ const credsReady =
 let sheetsClient = null;
 let notionClient = null;
 
+const normalizePrivateKey = (raw) => {
+  if (!raw) return raw;
+  let key = raw.trim();
+  // Retirer guillemets si la valeur a été collée avec ses doubles-quotes du JSON
+  if ((key.startsWith('"') && key.endsWith('"')) || (key.startsWith("'") && key.endsWith("'"))) {
+    key = key.slice(1, -1);
+  }
+  // Convertir \n littéraux en vrais retours à la ligne
+  key = key.replace(/\\n/g, "\n");
+  return key;
+};
+
 if (credsReady) {
+  const privateKey = normalizePrivateKey(GOOGLE_PRIVATE_KEY);
+  if (!privateKey.includes("BEGIN PRIVATE KEY") || !privateKey.includes("END PRIVATE KEY")) {
+    console.error("[server] GOOGLE_PRIVATE_KEY ne contient pas les délimiteurs BEGIN/END — vérifier le format");
+  }
   const auth = new google.auth.JWT({
     email: GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    key: GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+    key: privateKey,
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
   sheetsClient = google.sheets({ version: "v4", auth });
@@ -83,12 +99,14 @@ const createNotionPage = async (data) => {
       "Nom Prenom": {
         title: [{ text: { content: data.fullName || "" } }],
       },
-      Present: {
-        rich_text: [{ text: { content: data.attending || "" } }],
-      },
+      Present: data.attending
+        ? { select: { name: data.attending } }
+        : { select: null },
       "Nb Adultes": { number: Number(data.adults) || 0 },
       "Nb Kids": { number: Number(data.children) || 0 },
-      Email: { email: data.email || null },
+      Email: {
+        rich_text: [{ text: { content: data.email || "" } }],
+      },
       Message: {
         rich_text: [{ text: { content: data.message || "" } }],
       },
