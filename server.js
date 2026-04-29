@@ -80,14 +80,14 @@ const createNotionPage = async (data) => {
   await notionClient.pages.create({
     parent: { database_id: NOTION_DATABASE_ID },
     properties: {
-      "Nom Complet": {
+      "Nom Prenom": {
         title: [{ text: { content: data.fullName || "" } }],
       },
       Present: {
         rich_text: [{ text: { content: data.attending || "" } }],
       },
-      Adultes: { number: Number(data.adults) || 0 },
-      Enfants: { number: Number(data.children) || 0 },
+      "Nb Adultes": { number: Number(data.adults) || 0 },
+      "Nb Kids": { number: Number(data.children) || 0 },
       Email: { email: data.email || null },
       Message: {
         rich_text: [{ text: { content: data.message || "" } }],
